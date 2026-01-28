@@ -90,21 +90,8 @@ tail -f logs/run_<jobid>_<array_id>.out
 # Array task 2 = mnli
 # Array task 3 = qnli
 ```
-
-### 3. Analyze Results
-
-After experiments complete:
-
-```bash
-# Analyze results for a specific task
-python analyze_results.py --task sst2
-
-# Results will show mean ± std across seeds for each budget
-```
-
-This generates:
-- Console output with formatted tables
-- `results/{task}/summary_{nodp/dp}_{probs/hard}.csv` files
+### 3. Instructions for Notebook Usage
+[TODO]
 
 ### 4. Access Raw Results
 

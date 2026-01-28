@@ -278,3 +278,11 @@ Saved stolen prompt to checkpoints/qnli/stolen_qnli_nodp_budget5000_seed42_soft.
 [Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
 [Info] auto-selecting qqp as steal_ds
 [Steal] ds_len=5000
+Saved stolen prompt to checkpoints/qnli/stolen_qnli_nodp_budget5000_seed42_hard.pt
+✓ Stolen (hard, no DP) saved
+[qnli] Stealing (soft, DP) | budget=5000, seed=42...
+[Task] qnli | labels=['entailment', 'not_entailment'] | verbalizers=['entailment', 'not entailment']
+[Victim] checkpoints/qnli/victim_dp_qnli_eps8.0_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting qqp as steal_ds
+[Steal] ds_len=5000
