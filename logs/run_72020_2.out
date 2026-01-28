@@ -1267,3 +1267,11 @@ Saved stolen prompt to checkpoints/mnli/stolen_mnli_nodp_budget5000_seed44_hard.
 [Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
 [Info] auto-selecting snli as steal_ds
 [Steal] ds_len=5000
+Saved stolen prompt to checkpoints/mnli/stolen_mnli_dp_eps8.0_budget5000_seed44_soft.pt
+✓ Stolen (soft, DP) saved
+[mnli] Stealing (hard, DP) | budget=5000, seed=44...
+[Task] mnli | labels=['entailment', 'neutral', 'contradiction'] | verbalizers=['entailment', 'neutral', 'contradiction']
+[Victim] checkpoints/mnli/victim_dp_mnli_eps8.0_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=5000
