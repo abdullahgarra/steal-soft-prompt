@@ -1284,3 +1284,11 @@ SEED 44 | BUDGET 5000 - Stealing
 [Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
 [Info] auto-selecting stsb as steal_ds
 [Steal] ds_len=5000
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_nodp_budget5000_seed44_soft.pt
+✓ Stolen (soft, no DP) saved
+[qqp] Stealing (hard, no DP) | budget=5000, seed=44...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_qqp_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=5000

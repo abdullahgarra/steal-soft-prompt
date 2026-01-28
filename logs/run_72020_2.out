@@ -1275,3 +1275,17 @@ Saved stolen prompt to checkpoints/mnli/stolen_mnli_dp_eps8.0_budget5000_seed44_
 [Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
 [Info] auto-selecting snli as steal_ds
 [Steal] ds_len=5000
+Saved stolen prompt to checkpoints/mnli/stolen_mnli_dp_eps8.0_budget5000_seed44_hard.pt
+✓ Stolen (hard, DP) saved
+
+================================================
+SEED 44 | BUDGET 5000 - Evaluation
+================================================
+[mnli] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: MNLI | seed=44 | budget=5000 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...

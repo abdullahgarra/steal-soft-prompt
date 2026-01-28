@@ -270,3 +270,11 @@ SEED 42 | BUDGET 5000 - Stealing
 [Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
 [Info] auto-selecting qqp as steal_ds
 [Steal] ds_len=5000
+Saved stolen prompt to checkpoints/qnli/stolen_qnli_nodp_budget5000_seed42_soft.pt
+✓ Stolen (soft, no DP) saved
+[qnli] Stealing (hard, no DP) | budget=5000, seed=42...
+[Task] qnli | labels=['entailment', 'not_entailment'] | verbalizers=['entailment', 'not entailment']
+[Victim] checkpoints/qnli/victim_qnli_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting qqp as steal_ds
+[Steal] ds_len=5000
