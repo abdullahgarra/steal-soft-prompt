@@ -1252,3 +1252,35 @@ Evaluating stolen (no DP)...
 Evaluating victim (DP)...
 Evaluating stolen (DP)...
 Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QQP
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8877 | f1=0.8494 | conf=0.904 | pos_rate=0.378
+Stolen:  acc=0.5409 | f1=0.5583 | conf=0.664 | pos_rate=0.671
+  → Agreement=0.5499 | KL(v||s)=0.518973 | cos_sim=-0.005
+
+--- WITH DP ---
+Victim:  acc=0.8723 | f1=0.8323 | conf=0.975 | pos_rate=0.393
+Stolen:  acc=0.6099 | f1=0.3977 | conf=0.711 | pos_rate=0.280
+  → Agreement=0.6083 | KL(v||s)=0.625889 | cos_sim=0.010
+================================================================================
+
+✓ Results saved to results/qqp/qqp/
+  - results/qqp/qqp/results_nodp_hard.csv
+  - results/qqp/qqp/results_dp_hard.csv
+
+✓ Evaluations complete for budget 1000, seed 44
+
+================================================
+SEED 44 | BUDGET 5000 - Stealing
+================================================
+[qqp] Stealing (soft, no DP) | budget=5000, seed=44...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_qqp_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=5000
