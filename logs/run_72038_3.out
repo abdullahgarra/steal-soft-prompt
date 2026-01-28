@@ -265,3 +265,8 @@ Stolen:  acc=0.6648 | f1=0.7103 | conf=0.672 | pos_rate=0.652
 SEED 42 | BUDGET 5000 - Stealing
 ================================================
 [qnli] Stealing (soft, no DP) | budget=5000, seed=42...
+[Task] qnli | labels=['entailment', 'not_entailment'] | verbalizers=['entailment', 'not entailment']
+[Victim] checkpoints/qnli/victim_qnli_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting qqp as steal_ds
+[Steal] ds_len=5000
