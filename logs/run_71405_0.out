@@ -1,0 +1,1367 @@
+==========================================
+SLURM Array Task ID: 0
+Processing dataset: sst2
+==========================================
+
+Configuration:
+  Seeds: 42 43 44
+  Budgets: 200 500 1000 5000
+  Epochs: 20
+  Checkpoint dir: checkpoints/sst2
+  Results dir: results/sst2
+
+================================================
+SEED 42 - Training Victim Models
+================================================
+✓ Victim (no DP) already exists: checkpoints/sst2/victim_sst2_P20_seed42.pt
+✓ Victim (DP) already exists: checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed42.pt
+
+================================================
+SEED 42 | BUDGET 200 - Stealing
+================================================
+[sst2] Stealing (soft, no DP) | budget=200, seed=42...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_sst2_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=200 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=200
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_nodp_budget200_seed42_soft.pt
+✓ Stolen (soft, no DP) saved
+[sst2] Stealing (hard, no DP) | budget=200, seed=42...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_sst2_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=200 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=200
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_nodp_budget200_seed42_hard.pt
+✓ Stolen (hard, no DP) saved
+[sst2] Stealing (soft, DP) | budget=200, seed=42...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=200 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=200
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_dp_eps8.0_budget200_seed42_soft.pt
+✓ Stolen (soft, DP) saved
+[sst2] Stealing (hard, DP) | budget=200, seed=42...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=200 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=200
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_dp_eps8.0_budget200_seed42_hard.pt
+✓ Stolen (hard, DP) saved
+
+================================================
+SEED 42 | BUDGET 200 - Evaluation
+================================================
+[sst2] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: SST2 | seed=42 | budget=200 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: SST2
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.9002 | f1=0.9039 | conf=0.930 | pos_rate=0.529
+Stolen:  acc=0.8991 | f1=0.9031 | conf=0.926 | pos_rate=0.532
+  → Agreement=0.9759 | KL(v||s)=0.014875 | cos_sim=0.089
+
+--- WITH DP ---
+Victim:  acc=0.8922 | f1=0.8958 | conf=0.978 | pos_rate=0.525
+Stolen:  acc=0.8268 | f1=0.8346 | conf=0.875 | pos_rate=0.538
+  → Agreement=0.8773 | KL(v||s)=0.250213 | cos_sim=0.031
+================================================================================
+
+✓ Results saved to results/sst2/sst2/
+  - results/sst2/sst2/results_nodp_probs.csv
+  - results/sst2/sst2/results_dp_probs.csv
+
+[sst2] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: SST2 | seed=42 | budget=200 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: SST2
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.9002 | f1=0.9039 | conf=0.930 | pos_rate=0.529
+Stolen:  acc=0.8578 | f1=0.8591 | conf=0.913 | pos_rate=0.500
+  → Agreement=0.8933 | KL(v||s)=0.109794 | cos_sim=0.080
+
+--- WITH DP ---
+Victim:  acc=0.8922 | f1=0.8958 | conf=0.978 | pos_rate=0.525
+Stolen:  acc=0.8716 | f1=0.8811 | conf=0.939 | pos_rate=0.571
+  → Agreement=0.9289 | KL(v||s)=0.120075 | cos_sim=0.046
+================================================================================
+
+✓ Results saved to results/sst2/sst2/
+  - results/sst2/sst2/results_nodp_hard.csv
+  - results/sst2/sst2/results_dp_hard.csv
+
+✓ Evaluations complete for budget 200, seed 42
+
+================================================
+SEED 42 | BUDGET 500 - Stealing
+================================================
+[sst2] Stealing (soft, no DP) | budget=500, seed=42...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_sst2_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=500 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=500
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_nodp_budget500_seed42_soft.pt
+✓ Stolen (soft, no DP) saved
+[sst2] Stealing (hard, no DP) | budget=500, seed=42...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_sst2_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=500 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=500
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_nodp_budget500_seed42_hard.pt
+✓ Stolen (hard, no DP) saved
+[sst2] Stealing (soft, DP) | budget=500, seed=42...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=500 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=500
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_dp_eps8.0_budget500_seed42_soft.pt
+✓ Stolen (soft, DP) saved
+[sst2] Stealing (hard, DP) | budget=500, seed=42...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=500 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=500
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_dp_eps8.0_budget500_seed42_hard.pt
+✓ Stolen (hard, DP) saved
+
+================================================
+SEED 42 | BUDGET 500 - Evaluation
+================================================
+[sst2] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: SST2 | seed=42 | budget=500 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: SST2
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.9002 | f1=0.9039 | conf=0.930 | pos_rate=0.529
+Stolen:  acc=0.8922 | f1=0.8969 | conf=0.930 | pos_rate=0.537
+  → Agreement=0.9805 | KL(v||s)=0.007315 | cos_sim=0.134
+
+--- WITH DP ---
+Victim:  acc=0.8922 | f1=0.8958 | conf=0.978 | pos_rate=0.525
+Stolen:  acc=0.8899 | f1=0.8947 | conf=0.950 | pos_rate=0.537
+  → Agreement=0.9656 | KL(v||s)=0.044806 | cos_sim=0.037
+================================================================================
+
+✓ Results saved to results/sst2/sst2/
+  - results/sst2/sst2/results_nodp_probs.csv
+  - results/sst2/sst2/results_dp_probs.csv
+
+[sst2] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: SST2 | seed=42 | budget=500 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: SST2
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.9002 | f1=0.9039 | conf=0.930 | pos_rate=0.529
+Stolen:  acc=0.8888 | f1=0.8904 | conf=0.945 | pos_rate=0.506
+  → Agreement=0.9564 | KL(v||s)=0.058748 | cos_sim=0.078
+
+--- WITH DP ---
+Victim:  acc=0.8922 | f1=0.8958 | conf=0.978 | pos_rate=0.525
+Stolen:  acc=0.8784 | f1=0.8830 | conf=0.946 | pos_rate=0.530
+  → Agreement=0.9358 | KL(v||s)=0.082351 | cos_sim=0.046
+================================================================================
+
+✓ Results saved to results/sst2/sst2/
+  - results/sst2/sst2/results_nodp_hard.csv
+  - results/sst2/sst2/results_dp_hard.csv
+
+✓ Evaluations complete for budget 500, seed 42
+
+================================================
+SEED 42 | BUDGET 1000 - Stealing
+================================================
+[sst2] Stealing (soft, no DP) | budget=1000, seed=42...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_sst2_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=1000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=1000
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_nodp_budget1000_seed42_soft.pt
+✓ Stolen (soft, no DP) saved
+[sst2] Stealing (hard, no DP) | budget=1000, seed=42...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_sst2_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=1000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=1000
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_nodp_budget1000_seed42_hard.pt
+✓ Stolen (hard, no DP) saved
+[sst2] Stealing (soft, DP) | budget=1000, seed=42...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=1000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=1000
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_dp_eps8.0_budget1000_seed42_soft.pt
+✓ Stolen (soft, DP) saved
+[sst2] Stealing (hard, DP) | budget=1000, seed=42...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=1000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=1000
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_dp_eps8.0_budget1000_seed42_hard.pt
+✓ Stolen (hard, DP) saved
+
+================================================
+SEED 42 | BUDGET 1000 - Evaluation
+================================================
+[sst2] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: SST2 | seed=42 | budget=1000 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: SST2
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.9002 | f1=0.9039 | conf=0.930 | pos_rate=0.529
+Stolen:  acc=0.8933 | f1=0.8984 | conf=0.929 | pos_rate=0.540
+  → Agreement=0.9839 | KL(v||s)=0.007942 | cos_sim=0.110
+
+--- WITH DP ---
+Victim:  acc=0.8922 | f1=0.8958 | conf=0.978 | pos_rate=0.525
+Stolen:  acc=0.8899 | f1=0.8919 | conf=0.954 | pos_rate=0.509
+  → Agreement=0.9656 | KL(v||s)=0.050383 | cos_sim=0.033
+================================================================================
+
+✓ Results saved to results/sst2/sst2/
+  - results/sst2/sst2/results_nodp_probs.csv
+  - results/sst2/sst2/results_dp_probs.csv
+
+[sst2] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: SST2 | seed=42 | budget=1000 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: SST2
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.9002 | f1=0.9039 | conf=0.930 | pos_rate=0.529
+Stolen:  acc=0.8853 | f1=0.8894 | conf=0.959 | pos_rate=0.528
+  → Agreement=0.9622 | KL(v||s)=0.059760 | cos_sim=0.070
+
+--- WITH DP ---
+Victim:  acc=0.8922 | f1=0.8958 | conf=0.978 | pos_rate=0.525
+Stolen:  acc=0.8911 | f1=0.8929 | conf=0.961 | pos_rate=0.508
+  → Agreement=0.9622 | KL(v||s)=0.069355 | cos_sim=0.027
+================================================================================
+
+✓ Results saved to results/sst2/sst2/
+  - results/sst2/sst2/results_nodp_hard.csv
+  - results/sst2/sst2/results_dp_hard.csv
+
+✓ Evaluations complete for budget 1000, seed 42
+
+================================================
+SEED 42 | BUDGET 5000 - Stealing
+================================================
+[sst2] Stealing (soft, no DP) | budget=5000, seed=42...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_sst2_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=5000
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_nodp_budget5000_seed42_soft.pt
+✓ Stolen (soft, no DP) saved
+[sst2] Stealing (hard, no DP) | budget=5000, seed=42...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_sst2_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=5000
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_nodp_budget5000_seed42_hard.pt
+✓ Stolen (hard, no DP) saved
+[sst2] Stealing (soft, DP) | budget=5000, seed=42...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=5000
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_dp_eps8.0_budget5000_seed42_soft.pt
+✓ Stolen (soft, DP) saved
+[sst2] Stealing (hard, DP) | budget=5000, seed=42...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=5000
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_dp_eps8.0_budget5000_seed42_hard.pt
+✓ Stolen (hard, DP) saved
+
+================================================
+SEED 42 | BUDGET 5000 - Evaluation
+================================================
+[sst2] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: SST2 | seed=42 | budget=5000 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: SST2
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.9002 | f1=0.9039 | conf=0.930 | pos_rate=0.529
+Stolen:  acc=0.8956 | f1=0.9003 | conf=0.928 | pos_rate=0.538
+  → Agreement=0.9862 | KL(v||s)=0.004362 | cos_sim=0.136
+
+--- WITH DP ---
+Victim:  acc=0.8922 | f1=0.8958 | conf=0.978 | pos_rate=0.525
+Stolen:  acc=0.8853 | f1=0.8891 | conf=0.968 | pos_rate=0.525
+  → Agreement=0.9862 | KL(v||s)=0.015481 | cos_sim=0.034
+================================================================================
+
+✓ Results saved to results/sst2/sst2/
+  - results/sst2/sst2/results_nodp_probs.csv
+  - results/sst2/sst2/results_dp_probs.csv
+
+[sst2] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: SST2 | seed=42 | budget=5000 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: SST2
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.9002 | f1=0.9039 | conf=0.930 | pos_rate=0.529
+Stolen:  acc=0.8956 | f1=0.8990 | conf=0.968 | pos_rate=0.524
+  → Agreement=0.9587 | KL(v||s)=0.104215 | cos_sim=0.073
+
+--- WITH DP ---
+Victim:  acc=0.8922 | f1=0.8958 | conf=0.978 | pos_rate=0.525
+Stolen:  acc=0.8933 | f1=0.8977 | conf=0.967 | pos_rate=0.533
+  → Agreement=0.9782 | KL(v||s)=0.037905 | cos_sim=0.023
+================================================================================
+
+✓ Results saved to results/sst2/sst2/
+  - results/sst2/sst2/results_nodp_hard.csv
+  - results/sst2/sst2/results_dp_hard.csv
+
+✓ Evaluations complete for budget 5000, seed 42
+
+================================================
+Completed all budgets for SEED 42
+================================================
+
+================================================
+SEED 43 - Training Victim Models
+================================================
+[sst2] Training victim (no DP) with seed 43...
+[Task] sst2 (GLUE/sst2) | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Model] t5-small | prompt_len=20 | prompt_params=10,240
+[Save] checkpoints/sst2/victim_sst2_P20_seed43.pt
+[Log]  checkpoints/sst2/victim_sst2_P20_seed43.json
+Epoch 0 | val acc=0.7890 | conf=0.663 | ||P||=1.00 | pos_rate=0.514
+Epoch 1 | train_loss=0.1615 | val acc=0.8979 | conf=0.929 | ||P||=9.18 | pos_rate=0.508
+  ✓ Saved best prompt (acc=0.8979) to checkpoints/sst2/victim_sst2_P20_seed43.pt
+Epoch 2 | train_loss=0.1556 | val acc=0.8945 | conf=0.936 | ||P||=12.67 | pos_rate=0.509
+Epoch 3 | train_loss=0.1520 | val acc=0.8968 | conf=0.932 | ||P||=15.71 | pos_rate=0.507
+Epoch 4 | train_loss=0.1495 | val acc=0.8991 | conf=0.931 | ||P||=19.09 | pos_rate=0.518
+  ✓ Saved best prompt (acc=0.8991) to checkpoints/sst2/victim_sst2_P20_seed43.pt
+Epoch 5 | train_loss=0.1465 | val acc=0.8968 | conf=0.932 | ||P||=21.67 | pos_rate=0.523
+Done. Best val acc=0.8991 | saved=checkpoints/sst2/victim_sst2_P20_seed43.pt
+✓ Victim (no DP) saved to checkpoints/sst2/victim_sst2_P20_seed43.pt
+[sst2] Training victim (DP) with seed 43...
+[Task] sst2 (GLUE/sst2) | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Model] t5-small | prompt_len=20 | prompt_params=10,240
+[DP] eps=8.0 C=0.1
+[Save] checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed43.pt
+[Log]  checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed43.json
+[DP] batch_size=256 steps=1315 sample_rate=0.003801 sigma=0.5069
+Epoch 0 | val acc=0.7890 | conf=0.663 | ||P||=1.00 | pos_rate=0.514
+Epoch 1 | val acc=0.8945 | conf=0.981 | ||P||=15.99 | pos_rate=0.511
+  ✓ Saved best DP prompt (acc=0.8945) to checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed43.pt
+Epoch 2 | val acc=0.8945 | conf=0.981 | ||P||=22.18 | pos_rate=0.511
+Epoch 3 | val acc=0.8922 | conf=0.983 | ||P||=26.93 | pos_rate=0.505
+Epoch 4 | val acc=0.8888 | conf=0.981 | ||P||=30.62 | pos_rate=0.522
+Epoch 5 | val acc=0.8933 | conf=0.983 | ||P||=33.75 | pos_rate=0.510
+Done. Best val acc=0.8945 | saved=checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed43.pt
+✓ Victim (DP) saved to checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed43.pt
+
+================================================
+SEED 43 | BUDGET 200 - Stealing
+================================================
+[sst2] Stealing (soft, no DP) | budget=200, seed=43...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_sst2_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=200 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=200
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_nodp_budget200_seed43_soft.pt
+✓ Stolen (soft, no DP) saved
+[sst2] Stealing (hard, no DP) | budget=200, seed=43...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_sst2_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=200 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=200
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_nodp_budget200_seed43_hard.pt
+✓ Stolen (hard, no DP) saved
+[sst2] Stealing (soft, DP) | budget=200, seed=43...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=200 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=200
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_dp_eps8.0_budget200_seed43_soft.pt
+✓ Stolen (soft, DP) saved
+[sst2] Stealing (hard, DP) | budget=200, seed=43...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=200 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=200
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_dp_eps8.0_budget200_seed43_hard.pt
+✓ Stolen (hard, DP) saved
+
+================================================
+SEED 43 | BUDGET 200 - Evaluation
+================================================
+[sst2] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: SST2 | seed=43 | budget=200 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: SST2
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8991 | f1=0.9018 | conf=0.931 | pos_rate=0.518
+Stolen:  acc=0.8979 | f1=0.9023 | conf=0.931 | pos_rate=0.536
+  → Agreement=0.9782 | KL(v||s)=0.011744 | cos_sim=0.089
+
+--- WITH DP ---
+Victim:  acc=0.8945 | f1=0.8966 | conf=0.981 | pos_rate=0.511
+Stolen:  acc=0.8956 | f1=0.8990 | conf=0.952 | pos_rate=0.524
+  → Agreement=0.9782 | KL(v||s)=0.039860 | cos_sim=0.038
+================================================================================
+
+✓ Results saved to results/sst2/sst2/
+  - results/sst2/sst2/results_nodp_probs.csv
+  - results/sst2/sst2/results_dp_probs.csv
+
+[sst2] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: SST2 | seed=43 | budget=200 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: SST2
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8991 | f1=0.9018 | conf=0.931 | pos_rate=0.518
+Stolen:  acc=0.8865 | f1=0.8891 | conf=0.952 | pos_rate=0.515
+  → Agreement=0.9576 | KL(v||s)=0.052287 | cos_sim=0.080
+
+--- WITH DP ---
+Victim:  acc=0.8945 | f1=0.8966 | conf=0.981 | pos_rate=0.511
+Stolen:  acc=0.8819 | f1=0.8826 | conf=0.957 | pos_rate=0.497
+  → Agreement=0.9530 | KL(v||s)=0.079150 | cos_sim=0.032
+================================================================================
+
+✓ Results saved to results/sst2/sst2/
+  - results/sst2/sst2/results_nodp_hard.csv
+  - results/sst2/sst2/results_dp_hard.csv
+
+✓ Evaluations complete for budget 200, seed 43
+
+================================================
+SEED 43 | BUDGET 500 - Stealing
+================================================
+[sst2] Stealing (soft, no DP) | budget=500, seed=43...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_sst2_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=500 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=500
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_nodp_budget500_seed43_soft.pt
+✓ Stolen (soft, no DP) saved
+[sst2] Stealing (hard, no DP) | budget=500, seed=43...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_sst2_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=500 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=500
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_nodp_budget500_seed43_hard.pt
+✓ Stolen (hard, no DP) saved
+[sst2] Stealing (soft, DP) | budget=500, seed=43...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=500 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=500
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_dp_eps8.0_budget500_seed43_soft.pt
+✓ Stolen (soft, DP) saved
+[sst2] Stealing (hard, DP) | budget=500, seed=43...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=500 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=500
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_dp_eps8.0_budget500_seed43_hard.pt
+✓ Stolen (hard, DP) saved
+
+================================================
+SEED 43 | BUDGET 500 - Evaluation
+================================================
+[sst2] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: SST2 | seed=43 | budget=500 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: SST2
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8991 | f1=0.9018 | conf=0.931 | pos_rate=0.518
+Stolen:  acc=0.8945 | f1=0.8985 | conf=0.934 | pos_rate=0.530
+  → Agreement=0.9817 | KL(v||s)=0.010688 | cos_sim=0.086
+
+--- WITH DP ---
+Victim:  acc=0.8945 | f1=0.8966 | conf=0.981 | pos_rate=0.511
+Stolen:  acc=0.8899 | f1=0.8950 | conf=0.951 | pos_rate=0.539
+  → Agreement=0.9702 | KL(v||s)=0.046533 | cos_sim=0.036
+================================================================================
+
+✓ Results saved to results/sst2/sst2/
+  - results/sst2/sst2/results_nodp_probs.csv
+  - results/sst2/sst2/results_dp_probs.csv
+
+[sst2] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: SST2 | seed=43 | budget=500 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: SST2
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8991 | f1=0.9018 | conf=0.931 | pos_rate=0.518
+Stolen:  acc=0.8876 | f1=0.8923 | conf=0.950 | pos_rate=0.534
+  → Agreement=0.9587 | KL(v||s)=0.057548 | cos_sim=0.067
+
+--- WITH DP ---
+Victim:  acc=0.8945 | f1=0.8966 | conf=0.981 | pos_rate=0.511
+Stolen:  acc=0.8830 | f1=0.8849 | conf=0.959 | pos_rate=0.507
+  → Agreement=0.9633 | KL(v||s)=0.056727 | cos_sim=0.044
+================================================================================
+
+✓ Results saved to results/sst2/sst2/
+  - results/sst2/sst2/results_nodp_hard.csv
+  - results/sst2/sst2/results_dp_hard.csv
+
+✓ Evaluations complete for budget 500, seed 43
+
+================================================
+SEED 43 | BUDGET 1000 - Stealing
+================================================
+[sst2] Stealing (soft, no DP) | budget=1000, seed=43...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_sst2_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=1000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=1000
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_nodp_budget1000_seed43_soft.pt
+✓ Stolen (soft, no DP) saved
+[sst2] Stealing (hard, no DP) | budget=1000, seed=43...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_sst2_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=1000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=1000
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_nodp_budget1000_seed43_hard.pt
+✓ Stolen (hard, no DP) saved
+[sst2] Stealing (soft, DP) | budget=1000, seed=43...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=1000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=1000
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_dp_eps8.0_budget1000_seed43_soft.pt
+✓ Stolen (soft, DP) saved
+[sst2] Stealing (hard, DP) | budget=1000, seed=43...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=1000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=1000
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_dp_eps8.0_budget1000_seed43_hard.pt
+✓ Stolen (hard, DP) saved
+
+================================================
+SEED 43 | BUDGET 1000 - Evaluation
+================================================
+[sst2] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: SST2 | seed=43 | budget=1000 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: SST2
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8991 | f1=0.9018 | conf=0.931 | pos_rate=0.518
+Stolen:  acc=0.8945 | f1=0.8985 | conf=0.931 | pos_rate=0.530
+  → Agreement=0.9817 | KL(v||s)=0.009816 | cos_sim=0.089
+
+--- WITH DP ---
+Victim:  acc=0.8945 | f1=0.8966 | conf=0.981 | pos_rate=0.511
+Stolen:  acc=0.8933 | f1=0.8966 | conf=0.962 | pos_rate=0.522
+  → Agreement=0.9782 | KL(v||s)=0.026913 | cos_sim=0.046
+================================================================================
+
+✓ Results saved to results/sst2/sst2/
+  - results/sst2/sst2/results_nodp_probs.csv
+  - results/sst2/sst2/results_dp_probs.csv
+
+[sst2] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: SST2 | seed=43 | budget=1000 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: SST2
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8991 | f1=0.9018 | conf=0.931 | pos_rate=0.518
+Stolen:  acc=0.8853 | f1=0.8853 | conf=0.962 | pos_rate=0.491
+  → Agreement=0.9610 | KL(v||s)=0.087518 | cos_sim=0.067
+
+--- WITH DP ---
+Victim:  acc=0.8945 | f1=0.8966 | conf=0.981 | pos_rate=0.511
+Stolen:  acc=0.8876 | f1=0.8891 | conf=0.964 | pos_rate=0.505
+  → Agreement=0.9679 | KL(v||s)=0.061052 | cos_sim=0.053
+================================================================================
+
+✓ Results saved to results/sst2/sst2/
+  - results/sst2/sst2/results_nodp_hard.csv
+  - results/sst2/sst2/results_dp_hard.csv
+
+✓ Evaluations complete for budget 1000, seed 43
+
+================================================
+SEED 43 | BUDGET 5000 - Stealing
+================================================
+[sst2] Stealing (soft, no DP) | budget=5000, seed=43...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_sst2_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=5000
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_nodp_budget5000_seed43_soft.pt
+✓ Stolen (soft, no DP) saved
+[sst2] Stealing (hard, no DP) | budget=5000, seed=43...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_sst2_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=5000
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_nodp_budget5000_seed43_hard.pt
+✓ Stolen (hard, no DP) saved
+[sst2] Stealing (soft, DP) | budget=5000, seed=43...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=5000
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_dp_eps8.0_budget5000_seed43_soft.pt
+✓ Stolen (soft, DP) saved
+[sst2] Stealing (hard, DP) | budget=5000, seed=43...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=5000
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_dp_eps8.0_budget5000_seed43_hard.pt
+✓ Stolen (hard, DP) saved
+
+================================================
+SEED 43 | BUDGET 5000 - Evaluation
+================================================
+[sst2] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: SST2 | seed=43 | budget=5000 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: SST2
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8991 | f1=0.9018 | conf=0.931 | pos_rate=0.518
+Stolen:  acc=0.7615 | f1=0.7438 | conf=0.780 | pos_rate=0.422
+  → Agreement=0.7706 | KL(v||s)=0.320216 | cos_sim=0.035
+
+--- WITH DP ---
+Victim:  acc=0.8945 | f1=0.8966 | conf=0.981 | pos_rate=0.511
+Stolen:  acc=0.8933 | f1=0.8970 | conf=0.962 | pos_rate=0.526
+  → Agreement=0.9851 | KL(v||s)=0.022196 | cos_sim=0.049
+================================================================================
+
+✓ Results saved to results/sst2/sst2/
+  - results/sst2/sst2/results_nodp_probs.csv
+  - results/sst2/sst2/results_dp_probs.csv
+
+[sst2] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: SST2 | seed=43 | budget=5000 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: SST2
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8991 | f1=0.9018 | conf=0.931 | pos_rate=0.518
+Stolen:  acc=0.8853 | f1=0.8876 | conf=0.972 | pos_rate=0.511
+  → Agreement=0.9679 | KL(v||s)=0.110393 | cos_sim=0.033
+
+--- WITH DP ---
+Victim:  acc=0.8945 | f1=0.8966 | conf=0.981 | pos_rate=0.511
+Stolen:  acc=0.8750 | f1=0.8785 | conf=0.971 | pos_rate=0.519
+  → Agreement=0.9644 | KL(v||s)=0.068716 | cos_sim=0.052
+================================================================================
+
+✓ Results saved to results/sst2/sst2/
+  - results/sst2/sst2/results_nodp_hard.csv
+  - results/sst2/sst2/results_dp_hard.csv
+
+✓ Evaluations complete for budget 5000, seed 43
+
+================================================
+Completed all budgets for SEED 43
+================================================
+
+================================================
+SEED 44 - Training Victim Models
+================================================
+[sst2] Training victim (no DP) with seed 44...
+[Task] sst2 (GLUE/sst2) | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Model] t5-small | prompt_len=20 | prompt_params=10,240
+[Save] checkpoints/sst2/victim_sst2_P20_seed44.pt
+[Log]  checkpoints/sst2/victim_sst2_P20_seed44.json
+Epoch 0 | val acc=0.7844 | conf=0.633 | ||P||=1.02 | pos_rate=0.468
+Epoch 1 | train_loss=0.1613 | val acc=0.8888 | conf=0.933 | ||P||=8.49 | pos_rate=0.522
+  ✓ Saved best prompt (acc=0.8888) to checkpoints/sst2/victim_sst2_P20_seed44.pt
+Epoch 2 | train_loss=0.1561 | val acc=0.8979 | conf=0.937 | ||P||=12.22 | pos_rate=0.517
+  ✓ Saved best prompt (acc=0.8979) to checkpoints/sst2/victim_sst2_P20_seed44.pt
+Epoch 3 | train_loss=0.1532 | val acc=0.8979 | conf=0.929 | ||P||=15.15 | pos_rate=0.526
+Epoch 4 | train_loss=0.1503 | val acc=0.8933 | conf=0.937 | ||P||=17.88 | pos_rate=0.515
+Epoch 5 | train_loss=0.1478 | val acc=0.8979 | conf=0.936 | ||P||=20.25 | pos_rate=0.513
+Done. Best val acc=0.8979 | saved=checkpoints/sst2/victim_sst2_P20_seed44.pt
+✓ Victim (no DP) saved to checkpoints/sst2/victim_sst2_P20_seed44.pt
+[sst2] Training victim (DP) with seed 44...
+[Task] sst2 (GLUE/sst2) | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Model] t5-small | prompt_len=20 | prompt_params=10,240
+[DP] eps=8.0 C=0.1
+[Save] checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed44.pt
+[Log]  checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed44.json
+[DP] batch_size=256 steps=1315 sample_rate=0.003801 sigma=0.5069
+Epoch 0 | val acc=0.7844 | conf=0.633 | ||P||=1.02 | pos_rate=0.468
+Epoch 1 | val acc=0.8865 | conf=0.973 | ||P||=15.99 | pos_rate=0.510
+  ✓ Saved best DP prompt (acc=0.8865) to checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed44.pt
+Epoch 2 | val acc=0.8911 | conf=0.978 | ||P||=22.24 | pos_rate=0.522
+  ✓ Saved best DP prompt (acc=0.8911) to checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed44.pt
+Epoch 3 | val acc=0.8888 | conf=0.979 | ||P||=26.95 | pos_rate=0.515
+Epoch 4 | val acc=0.8899 | conf=0.981 | ||P||=30.87 | pos_rate=0.518
+Epoch 5 | val acc=0.8945 | conf=0.980 | ||P||=34.06 | pos_rate=0.518
+  ✓ Saved best DP prompt (acc=0.8945) to checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed44.pt
+Done. Best val acc=0.8945 | saved=checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed44.pt
+✓ Victim (DP) saved to checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed44.pt
+
+================================================
+SEED 44 | BUDGET 200 - Stealing
+================================================
+[sst2] Stealing (soft, no DP) | budget=200, seed=44...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_sst2_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=200 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=200
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_nodp_budget200_seed44_soft.pt
+✓ Stolen (soft, no DP) saved
+[sst2] Stealing (hard, no DP) | budget=200, seed=44...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_sst2_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=200 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=200
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_nodp_budget200_seed44_hard.pt
+✓ Stolen (hard, no DP) saved
+[sst2] Stealing (soft, DP) | budget=200, seed=44...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=200 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=200
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_dp_eps8.0_budget200_seed44_soft.pt
+✓ Stolen (soft, DP) saved
+[sst2] Stealing (hard, DP) | budget=200, seed=44...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=200 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=200
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_dp_eps8.0_budget200_seed44_hard.pt
+✓ Stolen (hard, DP) saved
+
+================================================
+SEED 44 | BUDGET 200 - Evaluation
+================================================
+[sst2] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: SST2 | seed=44 | budget=200 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: SST2
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8979 | f1=0.9006 | conf=0.937 | pos_rate=0.517
+Stolen:  acc=0.8922 | f1=0.8949 | conf=0.933 | pos_rate=0.516
+  → Agreement=0.9782 | KL(v||s)=0.012593 | cos_sim=0.034
+
+--- WITH DP ---
+Victim:  acc=0.8945 | f1=0.8973 | conf=0.980 | pos_rate=0.518
+Stolen:  acc=0.8888 | f1=0.8947 | conf=0.942 | pos_rate=0.547
+  → Agreement=0.9644 | KL(v||s)=0.058804 | cos_sim=-0.002
+================================================================================
+
+✓ Results saved to results/sst2/sst2/
+  - results/sst2/sst2/results_nodp_probs.csv
+  - results/sst2/sst2/results_dp_probs.csv
+
+[sst2] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: SST2 | seed=44 | budget=200 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: SST2
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8979 | f1=0.9006 | conf=0.937 | pos_rate=0.517
+Stolen:  acc=0.8716 | f1=0.8739 | conf=0.948 | pos_rate=0.509
+  → Agreement=0.9553 | KL(v||s)=0.057236 | cos_sim=0.022
+
+--- WITH DP ---
+Victim:  acc=0.8945 | f1=0.8973 | conf=0.980 | pos_rate=0.518
+Stolen:  acc=0.8681 | f1=0.8721 | conf=0.945 | pos_rate=0.522
+  → Agreement=0.9278 | KL(v||s)=0.112454 | cos_sim=0.008
+================================================================================
+
+✓ Results saved to results/sst2/sst2/
+  - results/sst2/sst2/results_nodp_hard.csv
+  - results/sst2/sst2/results_dp_hard.csv
+
+✓ Evaluations complete for budget 200, seed 44
+
+================================================
+SEED 44 | BUDGET 500 - Stealing
+================================================
+[sst2] Stealing (soft, no DP) | budget=500, seed=44...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_sst2_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=500 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=500
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_nodp_budget500_seed44_soft.pt
+✓ Stolen (soft, no DP) saved
+[sst2] Stealing (hard, no DP) | budget=500, seed=44...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_sst2_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=500 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=500
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_nodp_budget500_seed44_hard.pt
+✓ Stolen (hard, no DP) saved
+[sst2] Stealing (soft, DP) | budget=500, seed=44...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=500 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=500
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_dp_eps8.0_budget500_seed44_soft.pt
+✓ Stolen (soft, DP) saved
+[sst2] Stealing (hard, DP) | budget=500, seed=44...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=500 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=500
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_dp_eps8.0_budget500_seed44_hard.pt
+✓ Stolen (hard, DP) saved
+
+================================================
+SEED 44 | BUDGET 500 - Evaluation
+================================================
+[sst2] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: SST2 | seed=44 | budget=500 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: SST2
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8979 | f1=0.9006 | conf=0.937 | pos_rate=0.517
+Stolen:  acc=0.8922 | f1=0.8951 | conf=0.937 | pos_rate=0.518
+  → Agreement=0.9897 | KL(v||s)=0.009068 | cos_sim=0.035
+
+--- WITH DP ---
+Victim:  acc=0.8945 | f1=0.8973 | conf=0.980 | pos_rate=0.518
+Stolen:  acc=0.8968 | f1=0.8996 | conf=0.951 | pos_rate=0.518
+  → Agreement=0.9702 | KL(v||s)=0.041254 | cos_sim=0.001
+================================================================================
+
+✓ Results saved to results/sst2/sst2/
+  - results/sst2/sst2/results_nodp_probs.csv
+  - results/sst2/sst2/results_dp_probs.csv
+
+[sst2] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: SST2 | seed=44 | budget=500 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: SST2
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8979 | f1=0.9006 | conf=0.937 | pos_rate=0.517
+Stolen:  acc=0.8784 | f1=0.8814 | conf=0.943 | pos_rate=0.516
+  → Agreement=0.9622 | KL(v||s)=0.035997 | cos_sim=0.039
+
+--- WITH DP ---
+Victim:  acc=0.8945 | f1=0.8973 | conf=0.980 | pos_rate=0.518
+Stolen:  acc=0.8761 | f1=0.8747 | conf=0.951 | pos_rate=0.479
+  → Agreement=0.9358 | KL(v||s)=0.106873 | cos_sim=-0.002
+================================================================================
+
+✓ Results saved to results/sst2/sst2/
+  - results/sst2/sst2/results_nodp_hard.csv
+  - results/sst2/sst2/results_dp_hard.csv
+
+✓ Evaluations complete for budget 500, seed 44
+
+================================================
+SEED 44 | BUDGET 1000 - Stealing
+================================================
+[sst2] Stealing (soft, no DP) | budget=1000, seed=44...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_sst2_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=1000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=1000
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_nodp_budget1000_seed44_soft.pt
+✓ Stolen (soft, no DP) saved
+[sst2] Stealing (hard, no DP) | budget=1000, seed=44...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_sst2_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=1000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=1000
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_nodp_budget1000_seed44_hard.pt
+✓ Stolen (hard, no DP) saved
+[sst2] Stealing (soft, DP) | budget=1000, seed=44...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=1000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=1000
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_dp_eps8.0_budget1000_seed44_soft.pt
+✓ Stolen (soft, DP) saved
+[sst2] Stealing (hard, DP) | budget=1000, seed=44...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=1000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=1000
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_dp_eps8.0_budget1000_seed44_hard.pt
+✓ Stolen (hard, DP) saved
+
+================================================
+SEED 44 | BUDGET 1000 - Evaluation
+================================================
+[sst2] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: SST2 | seed=44 | budget=1000 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: SST2
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8979 | f1=0.9006 | conf=0.937 | pos_rate=0.517
+Stolen:  acc=0.8853 | f1=0.8876 | conf=0.923 | pos_rate=0.511
+  → Agreement=0.9736 | KL(v||s)=0.027967 | cos_sim=0.015
+
+--- WITH DP ---
+Victim:  acc=0.8945 | f1=0.8973 | conf=0.980 | pos_rate=0.518
+Stolen:  acc=0.8922 | f1=0.8953 | conf=0.954 | pos_rate=0.521
+  → Agreement=0.9725 | KL(v||s)=0.041426 | cos_sim=0.022
+================================================================================
+
+✓ Results saved to results/sst2/sst2/
+  - results/sst2/sst2/results_nodp_probs.csv
+  - results/sst2/sst2/results_dp_probs.csv
+
+[sst2] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: SST2 | seed=44 | budget=1000 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: SST2
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8979 | f1=0.9006 | conf=0.937 | pos_rate=0.517
+Stolen:  acc=0.8865 | f1=0.8886 | conf=0.963 | pos_rate=0.510
+  → Agreement=0.9541 | KL(v||s)=0.106884 | cos_sim=0.003
+
+--- WITH DP ---
+Victim:  acc=0.8945 | f1=0.8973 | conf=0.980 | pos_rate=0.518
+Stolen:  acc=0.8693 | f1=0.8722 | conf=0.964 | pos_rate=0.514
+  → Agreement=0.9472 | KL(v||s)=0.093421 | cos_sim=0.010
+================================================================================
+
+✓ Results saved to results/sst2/sst2/
+  - results/sst2/sst2/results_nodp_hard.csv
+  - results/sst2/sst2/results_dp_hard.csv
+
+✓ Evaluations complete for budget 1000, seed 44
+
+================================================
+SEED 44 | BUDGET 5000 - Stealing
+================================================
+[sst2] Stealing (soft, no DP) | budget=5000, seed=44...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_sst2_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=5000
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_nodp_budget5000_seed44_soft.pt
+✓ Stolen (soft, no DP) saved
+[sst2] Stealing (hard, no DP) | budget=5000, seed=44...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_sst2_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=5000
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_nodp_budget5000_seed44_hard.pt
+✓ Stolen (hard, no DP) saved
+[sst2] Stealing (soft, DP) | budget=5000, seed=44...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=5000
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_dp_eps8.0_budget5000_seed44_soft.pt
+✓ Stolen (soft, DP) saved
+[sst2] Stealing (hard, DP) | budget=5000, seed=44...
+[Task] sst2 | labels=['negative', 'positive'] | verbalizers=['negative', 'positive']
+[Victim] checkpoints/sst2/victim_dp_sst2_eps8.0_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting snli as steal_ds
+[Steal] ds_len=5000
+Saved stolen prompt to checkpoints/sst2/stolen_sst2_dp_eps8.0_budget5000_seed44_hard.pt
+✓ Stolen (hard, DP) saved
+
+================================================
+SEED 44 | BUDGET 5000 - Evaluation
+================================================
+[sst2] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: SST2 | seed=44 | budget=5000 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: SST2
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8979 | f1=0.9006 | conf=0.937 | pos_rate=0.517
+Stolen:  acc=0.8968 | f1=0.8993 | conf=0.936 | pos_rate=0.516
+  → Agreement=0.9920 | KL(v||s)=0.002691 | cos_sim=0.062
+
+--- WITH DP ---
+Victim:  acc=0.8945 | f1=0.8973 | conf=0.980 | pos_rate=0.518
+Stolen:  acc=0.8945 | f1=0.8973 | conf=0.969 | pos_rate=0.518
+  → Agreement=0.9817 | KL(v||s)=0.019491 | cos_sim=0.002
+================================================================================
+
+✓ Results saved to results/sst2/sst2/
+  - results/sst2/sst2/results_nodp_probs.csv
+  - results/sst2/sst2/results_dp_probs.csv
+
+[sst2] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: SST2 | seed=44 | budget=5000 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: SST2
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8979 | f1=0.9006 | conf=0.937 | pos_rate=0.517
+Stolen:  acc=0.8945 | f1=0.8943 | conf=0.970 | pos_rate=0.489
+  → Agreement=0.9576 | KL(v||s)=0.104628 | cos_sim=0.009
+
+--- WITH DP ---
+Victim:  acc=0.8945 | f1=0.8973 | conf=0.980 | pos_rate=0.518
+Stolen:  acc=0.8899 | f1=0.8931 | conf=0.969 | pos_rate=0.521
+  → Agreement=0.9541 | KL(v||s)=0.076839 | cos_sim=0.002
+================================================================================
+
+✓ Results saved to results/sst2/sst2/
+  - results/sst2/sst2/results_nodp_hard.csv
+  - results/sst2/sst2/results_dp_hard.csv
+
+✓ Evaluations complete for budget 5000, seed 44
+
+================================================
+Completed all budgets for SEED 44
+================================================
+
+
+==========================================
+TASK sst2 COMPLETE!
+Results saved to: results/sst2
+==========================================

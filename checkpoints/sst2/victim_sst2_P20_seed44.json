@@ -1,0 +1,67 @@
+{
+  "task": "sst2",
+  "model": "t5-small",
+  "prompt_len": 20,
+  "lr": 0.01,
+  "batch_size": 256,
+  "epochs": 5,
+  "max_length": 128,
+  "seed": 44,
+  "label_names": [
+    "negative",
+    "positive"
+  ],
+  "label_texts": [
+    "negative",
+    "positive"
+  ],
+  "save_path": "checkpoints/sst2/victim_sst2_P20_seed44.pt",
+  "epochs_log": [
+    {
+      "epoch": 1,
+      "train_loss": 0.1612845534712727,
+      "acc": 0.8887614678899083,
+      "avg_conf": 0.9330795139347742,
+      "prompt_norm": 8.49377727508545,
+      "pos_rate": 0.5217889908256881
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.15607872179074558,
+      "acc": 0.8979357798165137,
+      "avg_conf": 0.9371933149635245,
+      "prompt_norm": 12.21816635131836,
+      "pos_rate": 0.5172018348623854
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.1531624732059962,
+      "acc": 0.8979357798165137,
+      "avg_conf": 0.9290952988720815,
+      "prompt_norm": 15.154573440551758,
+      "pos_rate": 0.5263761467889908
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.15026715034587307,
+      "acc": 0.893348623853211,
+      "avg_conf": 0.9373662887363259,
+      "prompt_norm": 17.881492614746094,
+      "pos_rate": 0.5149082568807339
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.14778350024648115,
+      "acc": 0.8979357798165137,
+      "avg_conf": 0.9359082081995973,
+      "prompt_norm": 20.250547409057617,
+      "pos_rate": 0.5126146788990825
+    }
+  ],
+  "epoch0": {
+    "acc": 0.7844036697247706,
+    "avg_conf": 0.6332890462437901,
+    "prompt_norm": 1.015134572982788,
+    "pos_rate": 0.46788990825688076
+  }
+}

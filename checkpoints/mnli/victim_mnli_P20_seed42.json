@@ -1,0 +1,53 @@
+{
+  "task": "mnli",
+  "model": "t5-small",
+  "prompt_len": 20,
+  "lr": 0.01,
+  "batch_size": 256,
+  "epochs": 5,
+  "max_length": 128,
+  "seed": 42,
+  "label_names": [
+    "entailment",
+    "neutral",
+    "contradiction"
+  ],
+  "label_texts": [
+    "entailment",
+    "neutral",
+    "contradiction"
+  ],
+  "save_path": "checkpoints/mnli/victim_mnli_P20_seed42.pt",
+  "epochs_log": [
+    {
+      "epoch": 1,
+      "train_loss": 0.5084178687546245,
+      "acc": 0.7905247070809984,
+      "avg_conf": 0.8060492186660495,
+      "prompt_norm": 22.87667465209961,
+      "pos_rate": NaN
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.47453434124573257,
+      "acc": 0.7946001018848701,
+      "avg_conf": 0.8087902782282779,
+      "prompt_norm": 31.45439910888672,
+      "pos_rate": NaN
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.46606815020090736,
+      "acc": 0.7944982170147733,
+      "avg_conf": 0.8027181818724529,
+      "prompt_norm": 37.99052047729492,
+      "pos_rate": NaN
+    }
+  ],
+  "epoch0": {
+    "acc": 0.4641874681609781,
+    "avg_conf": 0.6436270363526385,
+    "prompt_norm": 1.0159800052642822,
+    "pos_rate": NaN
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "task": "qnli",
+  "model": "t5-small",
+  "prompt_len": 20,
+  "lr": 0.01,
+  "batch_size": 256,
+  "epochs": 5,
+  "max_length": 128,
+  "seed": 42,
+  "dp": {
+    "epsilon": 8.0,
+    "clip_C": 0.1,
+    "sigma": 0.48980712890625,
+    "sample_rate": 0.002444077408514173,
+    "steps": 2045
+  },
+  "label_names": [
+    "entailment",
+    "not_entailment"
+  ],
+  "label_texts": [
+    "entailment",
+    "not entailment"
+  ],
+  "save_path": "checkpoints/qnli/victim_dp_qnli_eps8.0_P20_seed42.pt",
+  "epochs_log": [
+    {
+      "epoch": 1,
+      "acc": 0.8504484715357862,
+      "avg_conf": 0.9739560279657656,
+      "prompt_norm": 19.235727310180664,
+      "pos_rate": 0.499725425590335
+    },
+    {
+      "epoch": 2,
+      "acc": 0.862529745561047,
+      "avg_conf": 0.9737206668005352,
+      "prompt_norm": 26.64550018310547,
+      "pos_rate": 0.5011898224418817
+    },
+    {
+      "epoch": 3,
+      "acc": 0.8698517298187809,
+      "avg_conf": 0.9772508695582516,
+      "prompt_norm": 32.34743118286133,
+      "pos_rate": 0.5183964854475562
+    },
+    {
+      "epoch": 4,
+      "acc": 0.8725974739154311,
+      "avg_conf": 0.9774473662693248,
+      "prompt_norm": 37.162174224853516,
+      "pos_rate": 0.5057660626029654
+    },
+    {
+      "epoch": 5,
+      "acc": 0.8704008786381109,
+      "avg_conf": 0.9783631816530934,
+      "prompt_norm": 40.75509262084961,
+      "pos_rate": 0.4827018121911038
+    }
+  ],
+  "epoch0": {
+    "acc": 0.4946000366099213,
+    "avg_conf": 0.9773064710577613,
+    "prompt_norm": 1.0159800052642822,
+    "pos_rate": 0.0
+  }
+}

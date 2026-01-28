@@ -1,0 +1,1252 @@
+==========================================
+SLURM Array Task ID: 1
+Processing dataset: qqp
+==========================================
+
+Configuration:
+  Seeds: 42 43 44
+  Budgets: 200 500 1000 5000
+  Epochs: 20
+  Checkpoint dir: checkpoints/qqp
+  Results dir: results/qqp
+
+================================================
+SEED 42 - Training Victim Models
+================================================
+✓ Victim (no DP) already exists: checkpoints/qqp/victim_qqp_P20_seed42.pt
+[qqp] Training victim (DP) with seed 42...
+[Task] qqp (GLUE/qqp) | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Model] t5-small | prompt_len=20 | prompt_params=10,240
+[DP] eps=8.0 C=0.1
+[Save] checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed42.pt
+[Log]  checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed42.json
+[DP] batch_size=256 steps=7105 sample_rate=0.000704 sigma=0.4507
+Epoch 0 | val acc=0.3682 | conf=1.000 | ||P||=1.02 | pos_rate=1.000
+Epoch 1 | val acc=0.8786 | conf=0.975 | ||P||=34.36 | pos_rate=0.391
+  ✓ Saved best DP prompt (acc=0.8786) to checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed42.pt
+Epoch 2 | val acc=0.8807 | conf=0.975 | ||P||=45.84 | pos_rate=0.392
+  ✓ Saved best DP prompt (acc=0.8807) to checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed42.pt
+Epoch 3 | val acc=0.8819 | conf=0.977 | ||P||=52.98 | pos_rate=0.393
+  ✓ Saved best DP prompt (acc=0.8819) to checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed42.pt
+Epoch 4 | val acc=0.8811 | conf=0.977 | ||P||=57.82 | pos_rate=0.405
+Epoch 5 | val acc=0.8817 | conf=0.977 | ||P||=61.35 | pos_rate=0.396
+Done. Best val acc=0.8819 | saved=checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed42.pt
+✓ Victim (DP) saved to checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed42.pt
+
+================================================
+SEED 42 | BUDGET 200 - Stealing
+================================================
+[qqp] Stealing (soft, no DP) | budget=200, seed=42...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_qqp_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=200 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=200
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_nodp_budget200_seed42_soft.pt
+✓ Stolen (soft, no DP) saved
+[qqp] Stealing (hard, no DP) | budget=200, seed=42...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_qqp_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=200 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=200
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_nodp_budget200_seed42_hard.pt
+✓ Stolen (hard, no DP) saved
+[qqp] Stealing (soft, DP) | budget=200, seed=42...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=200 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=200
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_dp_eps8.0_budget200_seed42_soft.pt
+✓ Stolen (soft, DP) saved
+[qqp] Stealing (hard, DP) | budget=200, seed=42...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=200 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=200
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_dp_eps8.0_budget200_seed42_hard.pt
+✓ Stolen (hard, DP) saved
+
+================================================
+SEED 42 | BUDGET 200 - Evaluation
+================================================
+[qqp] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: QQP | seed=42 | budget=200 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QQP
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8863 | f1=0.8485 | conf=0.899 | pos_rate=0.382
+Stolen:  acc=0.5998 | f1=0.2767 | conf=0.623 | pos_rate=0.185
+  → Agreement=0.5907 | KL(v||s)=0.432348 | cos_sim=0.010
+
+--- WITH DP ---
+Victim:  acc=0.8819 | f1=0.8447 | conf=0.977 | pos_rate=0.393
+Stolen:  acc=0.6159 | f1=0.1932 | conf=0.678 | pos_rate=0.108
+  → Agreement=0.5984 | KL(v||s)=0.629957 | cos_sim=0.020
+================================================================================
+
+✓ Results saved to results/qqp/qqp/
+  - results/qqp/qqp/results_nodp_probs.csv
+  - results/qqp/qqp/results_dp_probs.csv
+
+[qqp] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: QQP | seed=42 | budget=200 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QQP
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8863 | f1=0.8485 | conf=0.899 | pos_rate=0.382
+Stolen:  acc=0.4652 | f1=0.5730 | conf=0.646 | pos_rate=0.884
+  → Agreement=0.4815 | KL(v||s)=0.534299 | cos_sim=0.033
+
+--- WITH DP ---
+Victim:  acc=0.8819 | f1=0.8447 | conf=0.977 | pos_rate=0.393
+Stolen:  acc=0.6243 | f1=0.0907 | conf=0.685 | pos_rate=0.045
+  → Agreement=0.6022 | KL(v||s)=0.612910 | cos_sim=0.003
+================================================================================
+
+✓ Results saved to results/qqp/qqp/
+  - results/qqp/qqp/results_nodp_hard.csv
+  - results/qqp/qqp/results_dp_hard.csv
+
+✓ Evaluations complete for budget 200, seed 42
+
+================================================
+SEED 42 | BUDGET 500 - Stealing
+================================================
+[qqp] Stealing (soft, no DP) | budget=500, seed=42...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_qqp_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=500 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=500
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_nodp_budget500_seed42_soft.pt
+✓ Stolen (soft, no DP) saved
+[qqp] Stealing (hard, no DP) | budget=500, seed=42...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_qqp_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=500 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=500
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_nodp_budget500_seed42_hard.pt
+✓ Stolen (hard, no DP) saved
+[qqp] Stealing (soft, DP) | budget=500, seed=42...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=500 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=500
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_dp_eps8.0_budget500_seed42_soft.pt
+✓ Stolen (soft, DP) saved
+[qqp] Stealing (hard, DP) | budget=500, seed=42...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=500 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=500
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_dp_eps8.0_budget500_seed42_hard.pt
+✓ Stolen (hard, DP) saved
+
+================================================
+SEED 42 | BUDGET 500 - Evaluation
+================================================
+[qqp] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: QQP | seed=42 | budget=500 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QQP
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8863 | f1=0.8485 | conf=0.899 | pos_rate=0.382
+Stolen:  acc=0.5616 | f1=0.6099 | conf=0.744 | pos_rate=0.756
+  → Agreement=0.5786 | KL(v||s)=0.526462 | cos_sim=0.004
+
+--- WITH DP ---
+Victim:  acc=0.8819 | f1=0.8447 | conf=0.977 | pos_rate=0.393
+Stolen:  acc=0.6232 | f1=0.0415 | conf=0.770 | pos_rate=0.025
+  → Agreement=0.6004 | KL(v||s)=0.726854 | cos_sim=-0.005
+================================================================================
+
+✓ Results saved to results/qqp/qqp/
+  - results/qqp/qqp/results_nodp_probs.csv
+  - results/qqp/qqp/results_dp_probs.csv
+
+[qqp] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: QQP | seed=42 | budget=500 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QQP
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8863 | f1=0.8485 | conf=0.899 | pos_rate=0.382
+Stolen:  acc=0.5592 | f1=0.5976 | conf=0.732 | pos_rate=0.727
+  → Agreement=0.5727 | KL(v||s)=0.530438 | cos_sim=0.016
+
+--- WITH DP ---
+Victim:  acc=0.8819 | f1=0.8447 | conf=0.977 | pos_rate=0.393
+Stolen:  acc=0.5612 | f1=0.6013 | conf=0.638 | pos_rate=0.733
+  → Agreement=0.5871 | KL(v||s)=0.625179 | cos_sim=0.009
+================================================================================
+
+✓ Results saved to results/qqp/qqp/
+  - results/qqp/qqp/results_nodp_hard.csv
+  - results/qqp/qqp/results_dp_hard.csv
+
+✓ Evaluations complete for budget 500, seed 42
+
+================================================
+SEED 42 | BUDGET 1000 - Stealing
+================================================
+[qqp] Stealing (soft, no DP) | budget=1000, seed=42...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_qqp_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=1000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=1000
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_nodp_budget1000_seed42_soft.pt
+✓ Stolen (soft, no DP) saved
+[qqp] Stealing (hard, no DP) | budget=1000, seed=42...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_qqp_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=1000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=1000
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_nodp_budget1000_seed42_hard.pt
+✓ Stolen (hard, no DP) saved
+[qqp] Stealing (soft, DP) | budget=1000, seed=42...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=1000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=1000
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_dp_eps8.0_budget1000_seed42_soft.pt
+✓ Stolen (soft, DP) saved
+[qqp] Stealing (hard, DP) | budget=1000, seed=42...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=1000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=1000
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_dp_eps8.0_budget1000_seed42_hard.pt
+✓ Stolen (hard, DP) saved
+
+================================================
+SEED 42 | BUDGET 1000 - Evaluation
+================================================
+[qqp] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: QQP | seed=42 | budget=1000 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QQP
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8863 | f1=0.8485 | conf=0.899 | pos_rate=0.382
+Stolen:  acc=0.6545 | f1=0.6324 | conf=0.735 | pos_rate=0.572
+  → Agreement=0.6727 | KL(v||s)=0.383459 | cos_sim=0.003
+
+--- WITH DP ---
+Victim:  acc=0.8819 | f1=0.8447 | conf=0.977 | pos_rate=0.393
+Stolen:  acc=0.6705 | f1=0.6413 | conf=0.694 | pos_rate=0.550
+  → Agreement=0.7009 | KL(v||s)=0.515406 | cos_sim=0.006
+================================================================================
+
+✓ Results saved to results/qqp/qqp/
+  - results/qqp/qqp/results_nodp_probs.csv
+  - results/qqp/qqp/results_dp_probs.csv
+
+[qqp] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: QQP | seed=42 | budget=1000 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QQP
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8863 | f1=0.8485 | conf=0.899 | pos_rate=0.382
+Stolen:  acc=0.4860 | f1=0.5807 | conf=0.654 | pos_rate=0.858
+  → Agreement=0.5026 | KL(v||s)=0.526736 | cos_sim=0.009
+
+--- WITH DP ---
+Victim:  acc=0.8819 | f1=0.8447 | conf=0.977 | pos_rate=0.393
+Stolen:  acc=0.6796 | f1=0.6501 | conf=0.861 | pos_rate=0.548
+  → Agreement=0.7147 | KL(v||s)=0.619471 | cos_sim=0.017
+================================================================================
+
+✓ Results saved to results/qqp/qqp/
+  - results/qqp/qqp/results_nodp_hard.csv
+  - results/qqp/qqp/results_dp_hard.csv
+
+✓ Evaluations complete for budget 1000, seed 42
+
+================================================
+SEED 42 | BUDGET 5000 - Stealing
+================================================
+[qqp] Stealing (soft, no DP) | budget=5000, seed=42...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_qqp_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=5000
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_nodp_budget5000_seed42_soft.pt
+✓ Stolen (soft, no DP) saved
+[qqp] Stealing (hard, no DP) | budget=5000, seed=42...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_qqp_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=5000
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_nodp_budget5000_seed42_hard.pt
+✓ Stolen (hard, no DP) saved
+[qqp] Stealing (soft, DP) | budget=5000, seed=42...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=5000
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_dp_eps8.0_budget5000_seed42_soft.pt
+✓ Stolen (soft, DP) saved
+[qqp] Stealing (hard, DP) | budget=5000, seed=42...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=5000
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_dp_eps8.0_budget5000_seed42_hard.pt
+✓ Stolen (hard, DP) saved
+
+================================================
+SEED 42 | BUDGET 5000 - Evaluation
+================================================
+[qqp] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: QQP | seed=42 | budget=5000 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QQP
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8863 | f1=0.8485 | conf=0.899 | pos_rate=0.382
+Stolen:  acc=0.7234 | f1=0.6687 | conf=0.778 | pos_rate=0.467
+  → Agreement=0.7517 | KL(v||s)=0.294268 | cos_sim=0.020
+
+--- WITH DP ---
+Victim:  acc=0.8819 | f1=0.8447 | conf=0.977 | pos_rate=0.393
+Stolen:  acc=0.7161 | f1=0.6535 | conf=0.856 | pos_rate=0.451
+  → Agreement=0.7532 | KL(v||s)=0.509905 | cos_sim=0.002
+================================================================================
+
+✓ Results saved to results/qqp/qqp/
+  - results/qqp/qqp/results_nodp_probs.csv
+  - results/qqp/qqp/results_dp_probs.csv
+
+[qqp] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: QQP | seed=42 | budget=5000 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QQP
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8863 | f1=0.8485 | conf=0.899 | pos_rate=0.382
+Stolen:  acc=0.7093 | f1=0.6100 | conf=0.803 | pos_rate=0.377
+  → Agreement=0.7294 | KL(v||s)=0.349790 | cos_sim=0.018
+
+--- WITH DP ---
+Victim:  acc=0.8819 | f1=0.8447 | conf=0.977 | pos_rate=0.393
+Stolen:  acc=0.7447 | f1=0.6511 | conf=0.899 | pos_rate=0.363
+  → Agreement=0.7796 | KL(v||s)=0.516977 | cos_sim=0.015
+================================================================================
+
+✓ Results saved to results/qqp/qqp/
+  - results/qqp/qqp/results_nodp_hard.csv
+  - results/qqp/qqp/results_dp_hard.csv
+
+✓ Evaluations complete for budget 5000, seed 42
+
+================================================
+Completed all budgets for SEED 42
+================================================
+
+================================================
+SEED 43 - Training Victim Models
+================================================
+[qqp] Training victim (no DP) with seed 43...
+[Task] qqp (GLUE/qqp) | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Model] t5-small | prompt_len=20 | prompt_params=10,240
+[Save] checkpoints/qqp/victim_qqp_P20_seed43.pt
+[Log]  checkpoints/qqp/victim_qqp_P20_seed43.json
+Epoch 0 | val acc=0.3682 | conf=1.000 | ||P||=1.00 | pos_rate=1.000
+Epoch 1 | train_loss=0.4535 | val acc=0.8072 | conf=0.793 | ||P||=23.24 | pos_rate=0.389
+  ✓ Saved best prompt (acc=0.8072) to checkpoints/qqp/victim_qqp_P20_seed43.pt
+Epoch 2 | train_loss=0.3926 | val acc=0.8166 | conf=0.819 | ||P||=31.76 | pos_rate=0.322
+  ✓ Saved best prompt (acc=0.8166) to checkpoints/qqp/victim_qqp_P20_seed43.pt
+Epoch 3 | train_loss=0.2760 | val acc=0.8849 | conf=0.896 | ||P||=34.48 | pos_rate=0.360
+  ✓ Saved best prompt (acc=0.8849) to checkpoints/qqp/victim_qqp_P20_seed43.pt
+Epoch 4 | train_loss=0.2302 | val acc=0.8869 | conf=0.899 | ||P||=34.83 | pos_rate=0.371
+  ✓ Saved best prompt (acc=0.8869) to checkpoints/qqp/victim_qqp_P20_seed43.pt
+Epoch 5 | train_loss=0.2267 | val acc=0.8875 | conf=0.897 | ||P||=37.09 | pos_rate=0.365
+  ✓ Saved best prompt (acc=0.8875) to checkpoints/qqp/victim_qqp_P20_seed43.pt
+Done. Best val acc=0.8875 | saved=checkpoints/qqp/victim_qqp_P20_seed43.pt
+✓ Victim (no DP) saved to checkpoints/qqp/victim_qqp_P20_seed43.pt
+[qqp] Training victim (DP) with seed 43...
+[Task] qqp (GLUE/qqp) | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Model] t5-small | prompt_len=20 | prompt_params=10,240
+[DP] eps=8.0 C=0.1
+[Save] checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed43.pt
+[Log]  checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed43.json
+[DP] batch_size=256 steps=7105 sample_rate=0.000704 sigma=0.4507
+Epoch 0 | val acc=0.3682 | conf=1.000 | ||P||=1.00 | pos_rate=1.000
+Epoch 1 | val acc=0.7601 | conf=0.979 | ||P||=34.35 | pos_rate=0.387
+  ✓ Saved best DP prompt (acc=0.7601) to checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed43.pt
+Epoch 2 | val acc=0.7683 | conf=0.978 | ||P||=45.40 | pos_rate=0.376
+  ✓ Saved best DP prompt (acc=0.7683) to checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed43.pt
+Epoch 3 | val acc=0.7693 | conf=0.977 | ||P||=52.32 | pos_rate=0.395
+  ✓ Saved best DP prompt (acc=0.7693) to checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed43.pt
+Epoch 4 | val acc=0.7630 | conf=0.980 | ||P||=57.42 | pos_rate=0.271
+Epoch 5 | val acc=0.7702 | conf=0.976 | ||P||=61.23 | pos_rate=0.390
+  ✓ Saved best DP prompt (acc=0.7702) to checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed43.pt
+Done. Best val acc=0.7702 | saved=checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed43.pt
+✓ Victim (DP) saved to checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed43.pt
+
+================================================
+SEED 43 | BUDGET 200 - Stealing
+================================================
+[qqp] Stealing (soft, no DP) | budget=200, seed=43...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_qqp_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=200 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=200
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_nodp_budget200_seed43_soft.pt
+✓ Stolen (soft, no DP) saved
+[qqp] Stealing (hard, no DP) | budget=200, seed=43...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_qqp_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=200 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=200
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_nodp_budget200_seed43_hard.pt
+✓ Stolen (hard, no DP) saved
+[qqp] Stealing (soft, DP) | budget=200, seed=43...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=200 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=200
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_dp_eps8.0_budget200_seed43_soft.pt
+✓ Stolen (soft, DP) saved
+[qqp] Stealing (hard, DP) | budget=200, seed=43...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=200 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=200
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_dp_eps8.0_budget200_seed43_hard.pt
+✓ Stolen (hard, DP) saved
+
+================================================
+SEED 43 | BUDGET 200 - Evaluation
+================================================
+[qqp] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: QQP | seed=43 | budget=200 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QQP
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8875 | f1=0.8465 | conf=0.897 | pos_rate=0.365
+Stolen:  acc=0.6169 | f1=0.2011 | conf=0.605 | pos_rate=0.111
+  → Agreement=0.6216 | KL(v||s)=0.416663 | cos_sim=0.045
+
+--- WITH DP ---
+Victim:  acc=0.7702 | f1=0.6967 | conf=0.976 | pos_rate=0.390
+Stolen:  acc=0.6312 | f1=0.0041 | conf=0.825 | pos_rate=0.002
+  → Agreement=0.6094 | KL(v||s)=0.766093 | cos_sim=0.008
+================================================================================
+
+✓ Results saved to results/qqp/qqp/
+  - results/qqp/qqp/results_nodp_probs.csv
+  - results/qqp/qqp/results_dp_probs.csv
+
+[qqp] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: QQP | seed=43 | budget=200 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QQP
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8875 | f1=0.8465 | conf=0.897 | pos_rate=0.365
+Stolen:  acc=0.6211 | f1=0.1361 | conf=0.600 | pos_rate=0.070
+  → Agreement=0.6248 | KL(v||s)=0.420084 | cos_sim=0.031
+
+--- WITH DP ---
+Victim:  acc=0.7702 | f1=0.6967 | conf=0.976 | pos_rate=0.390
+Stolen:  acc=0.6318 | f1=0.0000 | conf=0.833 | pos_rate=0.000
+  → Agreement=0.6104 | KL(v||s)=0.788824 | cos_sim=0.001
+================================================================================
+
+✓ Results saved to results/qqp/qqp/
+  - results/qqp/qqp/results_nodp_hard.csv
+  - results/qqp/qqp/results_dp_hard.csv
+
+✓ Evaluations complete for budget 200, seed 43
+
+================================================
+SEED 43 | BUDGET 500 - Stealing
+================================================
+[qqp] Stealing (soft, no DP) | budget=500, seed=43...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_qqp_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=500 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=500
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_nodp_budget500_seed43_soft.pt
+✓ Stolen (soft, no DP) saved
+[qqp] Stealing (hard, no DP) | budget=500, seed=43...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_qqp_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=500 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=500
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_nodp_budget500_seed43_hard.pt
+✓ Stolen (hard, no DP) saved
+[qqp] Stealing (soft, DP) | budget=500, seed=43...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=500 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=500
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_dp_eps8.0_budget500_seed43_soft.pt
+✓ Stolen (soft, DP) saved
+[qqp] Stealing (hard, DP) | budget=500, seed=43...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=500 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=500
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_dp_eps8.0_budget500_seed43_hard.pt
+✓ Stolen (hard, DP) saved
+
+================================================
+SEED 43 | BUDGET 500 - Evaluation
+================================================
+[qqp] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: QQP | seed=43 | budget=500 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QQP
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8875 | f1=0.8465 | conf=0.897 | pos_rate=0.365
+Stolen:  acc=0.6114 | f1=0.2702 | conf=0.679 | pos_rate=0.164
+  → Agreement=0.6147 | KL(v||s)=0.433965 | cos_sim=0.031
+
+--- WITH DP ---
+Victim:  acc=0.7702 | f1=0.6967 | conf=0.976 | pos_rate=0.390
+Stolen:  acc=0.6318 | f1=0.0000 | conf=0.840 | pos_rate=0.000
+  → Agreement=0.6104 | KL(v||s)=0.775034 | cos_sim=-0.003
+================================================================================
+
+✓ Results saved to results/qqp/qqp/
+  - results/qqp/qqp/results_nodp_probs.csv
+  - results/qqp/qqp/results_dp_probs.csv
+
+[qqp] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: QQP | seed=43 | budget=500 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QQP
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8875 | f1=0.8465 | conf=0.897 | pos_rate=0.365
+Stolen:  acc=0.6140 | f1=0.1257 | conf=0.709 | pos_rate=0.073
+  → Agreement=0.6173 | KL(v||s)=0.454578 | cos_sim=0.030
+
+--- WITH DP ---
+Victim:  acc=0.7702 | f1=0.6967 | conf=0.976 | pos_rate=0.390
+Stolen:  acc=0.6329 | f1=0.0265 | conf=0.818 | pos_rate=0.009
+  → Agreement=0.6107 | KL(v||s)=0.773972 | cos_sim=-0.007
+================================================================================
+
+✓ Results saved to results/qqp/qqp/
+  - results/qqp/qqp/results_nodp_hard.csv
+  - results/qqp/qqp/results_dp_hard.csv
+
+✓ Evaluations complete for budget 500, seed 43
+
+================================================
+SEED 43 | BUDGET 1000 - Stealing
+================================================
+[qqp] Stealing (soft, no DP) | budget=1000, seed=43...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_qqp_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=1000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=1000
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_nodp_budget1000_seed43_soft.pt
+✓ Stolen (soft, no DP) saved
+[qqp] Stealing (hard, no DP) | budget=1000, seed=43...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_qqp_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=1000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=1000
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_nodp_budget1000_seed43_hard.pt
+✓ Stolen (hard, no DP) saved
+[qqp] Stealing (soft, DP) | budget=1000, seed=43...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=1000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=1000
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_dp_eps8.0_budget1000_seed43_soft.pt
+✓ Stolen (soft, DP) saved
+[qqp] Stealing (hard, DP) | budget=1000, seed=43...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=1000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=1000
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_dp_eps8.0_budget1000_seed43_hard.pt
+✓ Stolen (hard, DP) saved
+
+================================================
+SEED 43 | BUDGET 1000 - Evaluation
+================================================
+[qqp] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: QQP | seed=43 | budget=1000 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QQP
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8875 | f1=0.8465 | conf=0.897 | pos_rate=0.365
+Stolen:  acc=0.6019 | f1=0.4639 | conf=0.696 | pos_rate=0.374
+  → Agreement=0.6059 | KL(v||s)=0.437975 | cos_sim=0.055
+
+--- WITH DP ---
+Victim:  acc=0.7702 | f1=0.6967 | conf=0.976 | pos_rate=0.390
+Stolen:  acc=0.6250 | f1=0.0965 | conf=0.809 | pos_rate=0.047
+  → Agreement=0.6075 | KL(v||s)=0.747007 | cos_sim=0.004
+================================================================================
+
+✓ Results saved to results/qqp/qqp/
+  - results/qqp/qqp/results_nodp_probs.csv
+  - results/qqp/qqp/results_dp_probs.csv
+
+[qqp] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: QQP | seed=43 | budget=1000 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QQP
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8875 | f1=0.8465 | conf=0.897 | pos_rate=0.365
+Stolen:  acc=0.5937 | f1=0.4417 | conf=0.739 | pos_rate=0.360
+  → Agreement=0.5962 | KL(v||s)=0.493213 | cos_sim=0.011
+
+--- WITH DP ---
+Victim:  acc=0.7702 | f1=0.6967 | conf=0.976 | pos_rate=0.390
+Stolen:  acc=0.6271 | f1=0.0645 | conf=0.837 | pos_rate=0.030
+  → Agreement=0.6078 | KL(v||s)=0.802350 | cos_sim=-0.004
+================================================================================
+
+✓ Results saved to results/qqp/qqp/
+  - results/qqp/qqp/results_nodp_hard.csv
+  - results/qqp/qqp/results_dp_hard.csv
+
+✓ Evaluations complete for budget 1000, seed 43
+
+================================================
+SEED 43 | BUDGET 5000 - Stealing
+================================================
+[qqp] Stealing (soft, no DP) | budget=5000, seed=43...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_qqp_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=5000
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_nodp_budget5000_seed43_soft.pt
+✓ Stolen (soft, no DP) saved
+[qqp] Stealing (hard, no DP) | budget=5000, seed=43...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_qqp_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=5000
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_nodp_budget5000_seed43_hard.pt
+✓ Stolen (hard, no DP) saved
+[qqp] Stealing (soft, DP) | budget=5000, seed=43...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=5000
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_dp_eps8.0_budget5000_seed43_soft.pt
+✓ Stolen (soft, DP) saved
+[qqp] Stealing (hard, DP) | budget=5000, seed=43...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed43.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=5000
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_dp_eps8.0_budget5000_seed43_hard.pt
+✓ Stolen (hard, DP) saved
+
+================================================
+SEED 43 | BUDGET 5000 - Evaluation
+================================================
+[qqp] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: QQP | seed=43 | budget=5000 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QQP
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8875 | f1=0.8465 | conf=0.897 | pos_rate=0.365
+Stolen:  acc=0.6012 | f1=0.6004 | conf=0.699 | pos_rate=0.630
+  → Agreement=0.6047 | KL(v||s)=0.446779 | cos_sim=0.010
+
+--- WITH DP ---
+Victim:  acc=0.7702 | f1=0.6967 | conf=0.976 | pos_rate=0.390
+Stolen:  acc=0.6564 | f1=0.3419 | conf=0.782 | pos_rate=0.154
+  → Agreement=0.6724 | KL(v||s)=0.557380 | cos_sim=-0.006
+================================================================================
+
+✓ Results saved to results/qqp/qqp/
+  - results/qqp/qqp/results_nodp_probs.csv
+  - results/qqp/qqp/results_dp_probs.csv
+
+[qqp] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: QQP | seed=43 | budget=5000 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QQP
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8875 | f1=0.8465 | conf=0.897 | pos_rate=0.365
+Stolen:  acc=0.6156 | f1=0.5971 | conf=0.746 | pos_rate=0.586
+  → Agreement=0.6212 | KL(v||s)=0.481689 | cos_sim=0.034
+
+--- WITH DP ---
+Victim:  acc=0.7702 | f1=0.6967 | conf=0.976 | pos_rate=0.390
+Stolen:  acc=0.6429 | f1=0.2079 | conf=0.852 | pos_rate=0.083
+  → Agreement=0.6372 | KL(v||s)=0.920279 | cos_sim=-0.001
+================================================================================
+
+✓ Results saved to results/qqp/qqp/
+  - results/qqp/qqp/results_nodp_hard.csv
+  - results/qqp/qqp/results_dp_hard.csv
+
+✓ Evaluations complete for budget 5000, seed 43
+
+================================================
+Completed all budgets for SEED 43
+================================================
+
+================================================
+SEED 44 - Training Victim Models
+================================================
+[qqp] Training victim (no DP) with seed 44...
+[Task] qqp (GLUE/qqp) | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Model] t5-small | prompt_len=20 | prompt_params=10,240
+[Save] checkpoints/qqp/victim_qqp_P20_seed44.pt
+[Log]  checkpoints/qqp/victim_qqp_P20_seed44.json
+Epoch 0 | val acc=0.3682 | conf=1.000 | ||P||=1.02 | pos_rate=1.000
+Epoch 1 | train_loss=0.3823 | val acc=0.8834 | conf=0.894 | ||P||=23.13 | pos_rate=0.388
+  ✓ Saved best prompt (acc=0.8834) to checkpoints/qqp/victim_qqp_P20_seed44.pt
+Epoch 2 | train_loss=0.2284 | val acc=0.8877 | conf=0.904 | ||P||=24.54 | pos_rate=0.378
+  ✓ Saved best prompt (acc=0.8877) to checkpoints/qqp/victim_qqp_P20_seed44.pt
+Epoch 3 | train_loss=0.2250 | val acc=0.8868 | conf=0.906 | ||P||=28.20 | pos_rate=0.389
+Epoch 4 | train_loss=0.2240 | val acc=0.8871 | conf=0.907 | ||P||=34.00 | pos_rate=0.384
+Epoch 5 | train_loss=0.2235 | val acc=0.8876 | conf=0.904 | ||P||=40.00 | pos_rate=0.390
+Done. Best val acc=0.8877 | saved=checkpoints/qqp/victim_qqp_P20_seed44.pt
+✓ Victim (no DP) saved to checkpoints/qqp/victim_qqp_P20_seed44.pt
+[qqp] Training victim (DP) with seed 44...
+[Task] qqp (GLUE/qqp) | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Model] t5-small | prompt_len=20 | prompt_params=10,240
+[DP] eps=8.0 C=0.1
+[Save] checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed44.pt
+[Log]  checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed44.json
+[DP] batch_size=256 steps=7105 sample_rate=0.000704 sigma=0.4507
+Epoch 0 | val acc=0.3682 | conf=1.000 | ||P||=1.02 | pos_rate=1.000
+Epoch 1 | val acc=0.8368 | conf=0.969 | ||P||=34.16 | pos_rate=0.362
+  ✓ Saved best DP prompt (acc=0.8368) to checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed44.pt
+Epoch 2 | val acc=0.8647 | conf=0.970 | ||P||=45.60 | pos_rate=0.399
+  ✓ Saved best DP prompt (acc=0.8647) to checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed44.pt
+Epoch 3 | val acc=0.8707 | conf=0.973 | ||P||=52.65 | pos_rate=0.366
+  ✓ Saved best DP prompt (acc=0.8707) to checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed44.pt
+Epoch 4 | val acc=0.8723 | conf=0.975 | ||P||=57.76 | pos_rate=0.393
+  ✓ Saved best DP prompt (acc=0.8723) to checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed44.pt
+Epoch 5 | val acc=0.8715 | conf=0.975 | ||P||=61.12 | pos_rate=0.410
+Done. Best val acc=0.8723 | saved=checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed44.pt
+✓ Victim (DP) saved to checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed44.pt
+
+================================================
+SEED 44 | BUDGET 200 - Stealing
+================================================
+[qqp] Stealing (soft, no DP) | budget=200, seed=44...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_qqp_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=200 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=200
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_nodp_budget200_seed44_soft.pt
+✓ Stolen (soft, no DP) saved
+[qqp] Stealing (hard, no DP) | budget=200, seed=44...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_qqp_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=200 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=200
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_nodp_budget200_seed44_hard.pt
+✓ Stolen (hard, no DP) saved
+[qqp] Stealing (soft, DP) | budget=200, seed=44...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=200 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=200
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_dp_eps8.0_budget200_seed44_soft.pt
+✓ Stolen (soft, DP) saved
+[qqp] Stealing (hard, DP) | budget=200, seed=44...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=200 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=200
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_dp_eps8.0_budget200_seed44_hard.pt
+✓ Stolen (hard, DP) saved
+
+================================================
+SEED 44 | BUDGET 200 - Evaluation
+================================================
+[qqp] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: QQP | seed=44 | budget=200 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QQP
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8877 | f1=0.8494 | conf=0.904 | pos_rate=0.378
+Stolen:  acc=0.4569 | f1=0.4863 | conf=0.569 | pos_rate=0.689
+  → Agreement=0.4644 | KL(v||s)=0.499810 | cos_sim=-0.013
+
+--- WITH DP ---
+Victim:  acc=0.8723 | f1=0.8323 | conf=0.975 | pos_rate=0.393
+Stolen:  acc=0.4255 | f1=0.5538 | conf=0.682 | pos_rate=0.919
+  → Agreement=0.4509 | KL(v||s)=0.743962 | cos_sim=-0.001
+================================================================================
+
+✓ Results saved to results/qqp/qqp/
+  - results/qqp/qqp/results_nodp_probs.csv
+  - results/qqp/qqp/results_dp_probs.csv
+
+[qqp] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: QQP | seed=44 | budget=200 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QQP
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8877 | f1=0.8494 | conf=0.904 | pos_rate=0.378
+Stolen:  acc=0.4817 | f1=0.4469 | conf=0.548 | pos_rate=0.569
+  → Agreement=0.4877 | KL(v||s)=0.478216 | cos_sim=-0.014
+
+--- WITH DP ---
+Victim:  acc=0.8723 | f1=0.8323 | conf=0.975 | pos_rate=0.393
+Stolen:  acc=0.5620 | f1=0.2978 | conf=0.560 | pos_rate=0.256
+  → Agreement=0.5455 | KL(v||s)=0.628020 | cos_sim=-0.015
+================================================================================
+
+✓ Results saved to results/qqp/qqp/
+  - results/qqp/qqp/results_nodp_hard.csv
+  - results/qqp/qqp/results_dp_hard.csv
+
+✓ Evaluations complete for budget 200, seed 44
+
+================================================
+SEED 44 | BUDGET 500 - Stealing
+================================================
+[qqp] Stealing (soft, no DP) | budget=500, seed=44...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_qqp_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=500 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=500
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_nodp_budget500_seed44_soft.pt
+✓ Stolen (soft, no DP) saved
+[qqp] Stealing (hard, no DP) | budget=500, seed=44...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_qqp_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=500 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=500
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_nodp_budget500_seed44_hard.pt
+✓ Stolen (hard, no DP) saved
+[qqp] Stealing (soft, DP) | budget=500, seed=44...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=500 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=500
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_dp_eps8.0_budget500_seed44_soft.pt
+✓ Stolen (soft, DP) saved
+[qqp] Stealing (hard, DP) | budget=500, seed=44...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=500 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=500
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_dp_eps8.0_budget500_seed44_hard.pt
+✓ Stolen (hard, DP) saved
+
+================================================
+SEED 44 | BUDGET 500 - Evaluation
+================================================
+[qqp] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: QQP | seed=44 | budget=500 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QQP
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8877 | f1=0.8494 | conf=0.904 | pos_rate=0.378
+Stolen:  acc=0.5477 | f1=0.3238 | conf=0.566 | pos_rate=0.301
+  → Agreement=0.5432 | KL(v||s)=0.455815 | cos_sim=-0.013
+
+--- WITH DP ---
+Victim:  acc=0.8723 | f1=0.8323 | conf=0.975 | pos_rate=0.393
+Stolen:  acc=0.6178 | f1=0.1662 | conf=0.598 | pos_rate=0.090
+  → Agreement=0.6005 | KL(v||s)=0.607004 | cos_sim=-0.002
+================================================================================
+
+✓ Results saved to results/qqp/qqp/
+  - results/qqp/qqp/results_nodp_probs.csv
+  - results/qqp/qqp/results_dp_probs.csv
+
+[qqp] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: QQP | seed=44 | budget=500 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QQP
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8877 | f1=0.8494 | conf=0.904 | pos_rate=0.378
+Stolen:  acc=0.6107 | f1=0.2621 | conf=0.608 | pos_rate=0.159
+  → Agreement=0.6032 | KL(v||s)=0.423106 | cos_sim=0.006
+
+--- WITH DP ---
+Victim:  acc=0.8723 | f1=0.8323 | conf=0.975 | pos_rate=0.393
+Stolen:  acc=0.5288 | f1=0.4954 | conf=0.553 | pos_rate=0.566
+  → Agreement=0.5355 | KL(v||s)=0.628987 | cos_sim=-0.007
+================================================================================
+
+✓ Results saved to results/qqp/qqp/
+  - results/qqp/qqp/results_nodp_hard.csv
+  - results/qqp/qqp/results_dp_hard.csv
+
+✓ Evaluations complete for budget 500, seed 44
+
+================================================
+SEED 44 | BUDGET 1000 - Stealing
+================================================
+[qqp] Stealing (soft, no DP) | budget=1000, seed=44...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_qqp_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=1000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=1000
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_nodp_budget1000_seed44_soft.pt
+✓ Stolen (soft, no DP) saved
+[qqp] Stealing (hard, no DP) | budget=1000, seed=44...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_qqp_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=1000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=1000
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_nodp_budget1000_seed44_hard.pt
+✓ Stolen (hard, no DP) saved
+[qqp] Stealing (soft, DP) | budget=1000, seed=44...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=1000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=1000
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_dp_eps8.0_budget1000_seed44_soft.pt
+✓ Stolen (soft, DP) saved
+[qqp] Stealing (hard, DP) | budget=1000, seed=44...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=1000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=1000
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_dp_eps8.0_budget1000_seed44_hard.pt
+✓ Stolen (hard, DP) saved
+
+================================================
+SEED 44 | BUDGET 1000 - Evaluation
+================================================
+[qqp] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: QQP | seed=44 | budget=1000 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QQP
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8877 | f1=0.8494 | conf=0.904 | pos_rate=0.378
+Stolen:  acc=0.6033 | f1=0.4890 | conf=0.723 | pos_rate=0.408
+  → Agreement=0.6051 | KL(v||s)=0.494856 | cos_sim=-0.022
+
+--- WITH DP ---
+Victim:  acc=0.8723 | f1=0.8323 | conf=0.975 | pos_rate=0.393
+Stolen:  acc=0.6252 | f1=0.2092 | conf=0.712 | pos_rate=0.106
+  → Agreement=0.6095 | KL(v||s)=0.646569 | cos_sim=-0.005
+================================================================================
+
+✓ Results saved to results/qqp/qqp/
+  - results/qqp/qqp/results_nodp_probs.csv
+  - results/qqp/qqp/results_dp_probs.csv
+
+[qqp] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: QQP | seed=44 | budget=1000 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...

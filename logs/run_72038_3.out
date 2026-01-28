@@ -1,0 +1,267 @@
+==========================================
+SLURM Array Task ID: 3
+Processing dataset: qnli
+==========================================
+
+Configuration:
+  Seeds: 42 43 44
+  Budgets: 200 500 1000 5000
+  Epochs: 20
+  Checkpoint dir: checkpoints/qnli
+  Results dir: results/qnli
+
+================================================
+SEED 42 - Training Victim Models
+================================================
+✓ Victim (no DP) already exists: checkpoints/qnli/victim_qnli_P20_seed42.pt
+✓ Victim (DP) already exists: checkpoints/qnli/victim_dp_qnli_eps8.0_P20_seed42.pt
+
+================================================
+SEED 42 | BUDGET 200 - Stealing
+================================================
+✓ Stolen (soft, no DP) already exists
+✓ Stolen (hard, no DP) already exists
+✓ Stolen (soft, DP) already exists
+✓ Stolen (hard, DP) already exists
+
+================================================
+SEED 42 | BUDGET 200 - Evaluation
+================================================
+[qnli] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: QNLI | seed=42 | budget=200 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QNLI
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.9008 | f1=0.9023 | conf=0.901 | pos_rate=0.510
+Stolen:  acc=0.5054 | f1=0.6712 | conf=0.589 | pos_rate=0.999
+  → Agreement=0.5098 | KL(v||s)=0.439467 | cos_sim=0.077
+
+--- WITH DP ---
+Victim:  acc=0.8726 | f1=0.8740 | conf=0.977 | pos_rate=0.506
+Stolen:  acc=0.8486 | f1=0.8441 | conf=0.813 | pos_rate=0.466
+  → Agreement=0.9024 | KL(v||s)=0.226384 | cos_sim=0.021
+================================================================================
+
+✓ Results saved to results/qnli/qnli/
+  - results/qnli/qnli/results_nodp_probs.csv
+  - results/qnli/qnli/results_dp_probs.csv
+
+[qnli] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: QNLI | seed=42 | budget=200 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QNLI
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.9008 | f1=0.9023 | conf=0.901 | pos_rate=0.510
+Stolen:  acc=0.5164 | f1=0.6689 | conf=0.659 | pos_rate=0.955
+  → Agreement=0.5204 | KL(v||s)=0.482011 | cos_sim=0.064
+
+--- WITH DP ---
+Victim:  acc=0.8726 | f1=0.8740 | conf=0.977 | pos_rate=0.506
+Stolen:  acc=0.8484 | f1=0.8468 | conf=0.738 | pos_rate=0.484
+  → Agreement=0.8938 | KL(v||s)=0.303784 | cos_sim=0.012
+================================================================================
+
+✓ Results saved to results/qnli/qnli/
+  - results/qnli/qnli/results_nodp_hard.csv
+  - results/qnli/qnli/results_dp_hard.csv
+
+✓ Evaluations complete for budget 200, seed 42
+
+================================================
+SEED 42 | BUDGET 500 - Stealing
+================================================
+✓ Stolen (soft, no DP) already exists
+✓ Stolen (hard, no DP) already exists
+✓ Stolen (soft, DP) already exists
+✓ Stolen (hard, DP) already exists
+
+================================================
+SEED 42 | BUDGET 500 - Evaluation
+================================================
+[qnli] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: QNLI | seed=42 | budget=500 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QNLI
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.9008 | f1=0.9023 | conf=0.901 | pos_rate=0.510
+Stolen:  acc=0.5056 | f1=0.6709 | conf=0.625 | pos_rate=0.997
+  → Agreement=0.5107 | KL(v||s)=0.454053 | cos_sim=0.060
+
+--- WITH DP ---
+Victim:  acc=0.8726 | f1=0.8740 | conf=0.977 | pos_rate=0.506
+Stolen:  acc=0.5799 | f1=0.6966 | conf=0.684 | pos_rate=0.879
+  → Agreement=0.5913 | KL(v||s)=0.612852 | cos_sim=0.009
+================================================================================
+
+✓ Results saved to results/qnli/qnli/
+  - results/qnli/qnli/results_nodp_probs.csv
+  - results/qnli/qnli/results_dp_probs.csv
+
+[qnli] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: QNLI | seed=42 | budget=500 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QNLI
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.9008 | f1=0.9023 | conf=0.901 | pos_rate=0.510
+Stolen:  acc=0.5102 | f1=0.6695 | conf=0.611 | pos_rate=0.977
+  → Agreement=0.5149 | KL(v||s)=0.450945 | cos_sim=0.079
+
+--- WITH DP ---
+Victim:  acc=0.8726 | f1=0.8740 | conf=0.977 | pos_rate=0.506
+Stolen:  acc=0.4944 | f1=0.0079 | conf=0.578 | pos_rate=0.004
+  → Agreement=0.4951 | KL(v||s)=0.647047 | cos_sim=0.021
+================================================================================
+
+✓ Results saved to results/qnli/qnli/
+  - results/qnli/qnli/results_nodp_hard.csv
+  - results/qnli/qnli/results_dp_hard.csv
+
+✓ Evaluations complete for budget 500, seed 42
+
+================================================
+SEED 42 | BUDGET 1000 - Stealing
+================================================
+✓ Stolen (soft, no DP) already exists
+✓ Stolen (hard, no DP) already exists
+[qnli] Stealing (soft, DP) | budget=1000, seed=42...
+[Task] qnli | labels=['entailment', 'not_entailment'] | verbalizers=['entailment', 'not entailment']
+[Victim] checkpoints/qnli/victim_dp_qnli_eps8.0_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=1000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting qqp as steal_ds
+[Steal] ds_len=1000
+Saved stolen prompt to checkpoints/qnli/stolen_qnli_dp_eps8.0_budget1000_seed42_soft.pt
+✓ Stolen (soft, DP) saved
+[qnli] Stealing (hard, DP) | budget=1000, seed=42...
+[Task] qnli | labels=['entailment', 'not_entailment'] | verbalizers=['entailment', 'not entailment']
+[Victim] checkpoints/qnli/victim_dp_qnli_eps8.0_P20_seed42.pt | prompt_len=20
+[Steal] steal_ds=auto budget=1000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting qqp as steal_ds
+[Steal] ds_len=1000
+Saved stolen prompt to checkpoints/qnli/stolen_qnli_dp_eps8.0_budget1000_seed42_hard.pt
+✓ Stolen (hard, DP) saved
+
+================================================
+SEED 42 | BUDGET 1000 - Evaluation
+================================================
+[qnli] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: QNLI | seed=42 | budget=1000 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QNLI
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.9008 | f1=0.9023 | conf=0.901 | pos_rate=0.510
+Stolen:  acc=0.5059 | f1=0.6715 | conf=0.598 | pos_rate=0.999
+  → Agreement=0.5103 | KL(v||s)=0.444291 | cos_sim=0.077
+
+--- WITH DP ---
+Victim:  acc=0.8726 | f1=0.8740 | conf=0.977 | pos_rate=0.506
+Stolen:  acc=0.5431 | f1=0.2151 | conf=0.604 | pos_rate=0.077
+  → Agreement=0.5482 | KL(v||s)=0.601129 | cos_sim=0.009
+================================================================================
+
+✓ Results saved to results/qnli/qnli/
+  - results/qnli/qnli/results_nodp_probs.csv
+  - results/qnli/qnli/results_dp_probs.csv
+
+[qnli] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: QNLI | seed=42 | budget=1000 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QNLI
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.9008 | f1=0.9023 | conf=0.901 | pos_rate=0.510
+Stolen:  acc=0.8506 | f1=0.8590 | conf=0.863 | pos_rate=0.554
+  → Agreement=0.8916 | KL(v||s)=0.128980 | cos_sim=0.049
+
+--- WITH DP ---
+Victim:  acc=0.8726 | f1=0.8740 | conf=0.977 | pos_rate=0.506
+Stolen:  acc=0.6648 | f1=0.7103 | conf=0.672 | pos_rate=0.652
+  → Agreement=0.6897 | KL(v||s)=0.527172 | cos_sim=0.008
+================================================================================
+
+✓ Results saved to results/qnli/qnli/
+  - results/qnli/qnli/results_nodp_hard.csv
+  - results/qnli/qnli/results_dp_hard.csv
+
+✓ Evaluations complete for budget 1000, seed 42
+
+================================================
+SEED 42 | BUDGET 5000 - Stealing
+================================================
+[qnli] Stealing (soft, no DP) | budget=5000, seed=42...

@@ -1,0 +1,23 @@
+==========================================
+SLURM Array Task ID: 1
+Processing dataset: qqp
+==========================================
+
+Configuration:
+  Seeds: 42 43 44
+  Budgets: 200 500 1000 5000
+  Epochs: 20
+  Checkpoint dir: checkpoints/qqp
+  Results dir: results/qqp
+
+================================================
+SEED 42 - Training Victim Models
+================================================
+[qqp] Training victim (no DP) with seed 42...
+[Task] qqp (GLUE/qqp) | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Model] t5-small | prompt_len=20 | prompt_params=10,240
+[Save] checkpoints/qqp/victim_qqp_P20_seed42.pt
+[Log]  checkpoints/qqp/victim_qqp_P20_seed42.json
+Epoch 0 | val acc=0.3682 | conf=1.000 | ||P||=1.02 | pos_rate=1.000
+Epoch 1 | train_loss=0.2681 | val acc=0.8863 | conf=0.899 | ||P||=16.05 | pos_rate=0.382
+  ✓ Saved best prompt (acc=0.8863) to checkpoints/qqp/victim_qqp_P20_seed42.pt

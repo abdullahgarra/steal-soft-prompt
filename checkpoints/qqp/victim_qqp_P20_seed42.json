@@ -1,0 +1,35 @@
+{
+  "task": "qqp",
+  "model": "t5-small",
+  "prompt_len": 20,
+  "lr": 0.01,
+  "batch_size": 256,
+  "epochs": 5,
+  "max_length": 128,
+  "seed": 42,
+  "label_names": [
+    "not_duplicate",
+    "duplicate"
+  ],
+  "label_texts": [
+    "not duplicate",
+    "duplicate"
+  ],
+  "save_path": "checkpoints/qqp/victim_qqp_P20_seed42.pt",
+  "epochs_log": [
+    {
+      "epoch": 1,
+      "train_loss": 0.2681404422918313,
+      "acc": 0.8862973039821914,
+      "avg_conf": 0.8991629268165983,
+      "prompt_norm": 16.053667068481445,
+      "pos_rate": 0.3824387830818699
+    }
+  ],
+  "epoch0": {
+    "acc": 0.36816720257234725,
+    "avg_conf": 0.9998955353221002,
+    "prompt_norm": 1.0159800052642822,
+    "pos_rate": 1.0
+  }
+}
