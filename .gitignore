@@ -1,3 +1,5 @@
 analyze_results.py
 plot_results.py
 generate_report.py
+
+logs/

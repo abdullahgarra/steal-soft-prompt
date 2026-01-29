@@ -1292,3 +1292,100 @@ Saved stolen prompt to checkpoints/qqp/stolen_qqp_nodp_budget5000_seed44_soft.pt
 [Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
 [Info] auto-selecting stsb as steal_ds
 [Steal] ds_len=5000
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_nodp_budget5000_seed44_hard.pt
+✓ Stolen (hard, no DP) saved
+[qqp] Stealing (soft, DP) | budget=5000, seed=44...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=5000
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_dp_eps8.0_budget5000_seed44_soft.pt
+✓ Stolen (soft, DP) saved
+[qqp] Stealing (hard, DP) | budget=5000, seed=44...
+[Task] qqp | labels=['not_duplicate', 'duplicate'] | verbalizers=['not duplicate', 'duplicate']
+[Victim] checkpoints/qqp/victim_dp_qqp_eps8.0_P20_seed44.pt | prompt_len=20
+[Steal] steal_ds=auto budget=5000 epochs=20 bs=256 lr=0.01
+[Info] auto-selecting stsb as steal_ds
+[Steal] ds_len=5000
+Saved stolen prompt to checkpoints/qqp/stolen_qqp_dp_eps8.0_budget5000_seed44_hard.pt
+✓ Stolen (hard, DP) saved
+
+================================================
+SEED 44 | BUDGET 5000 - Evaluation
+================================================
+[qqp] Evaluating soft oracle results...
+
+================================================================================
+EVALUATING: QQP | seed=44 | budget=5000 | oracle=probs
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QQP
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8877 | f1=0.8494 | conf=0.904 | pos_rate=0.378
+Stolen:  acc=0.6887 | f1=0.6524 | conf=0.741 | pos_rate=0.527
+  → Agreement=0.7077 | KL(v||s)=0.358644 | cos_sim=0.023
+
+--- WITH DP ---
+Victim:  acc=0.8723 | f1=0.8323 | conf=0.975 | pos_rate=0.393
+Stolen:  acc=0.6491 | f1=0.5685 | conf=0.723 | pos_rate=0.445
+  → Agreement=0.6717 | KL(v||s)=0.548261 | cos_sim=0.009
+================================================================================
+
+✓ Results saved to results/qqp/qqp/
+  - results/qqp/qqp/results_nodp_probs.csv
+  - results/qqp/qqp/results_dp_probs.csv
+
+[qqp] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: QQP | seed=44 | budget=5000 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: QQP
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.8877 | f1=0.8494 | conf=0.904 | pos_rate=0.378
+Stolen:  acc=0.6949 | f1=0.6214 | conf=0.810 | pos_rate=0.438
+  → Agreement=0.7148 | KL(v||s)=0.383597 | cos_sim=0.029
+
+--- WITH DP ---
+Victim:  acc=0.8723 | f1=0.8323 | conf=0.975 | pos_rate=0.393
+Stolen:  acc=0.6544 | f1=0.6398 | conf=0.811 | pos_rate=0.591
+  → Agreement=0.6952 | KL(v||s)=0.565516 | cos_sim=0.009
+================================================================================
+
+✓ Results saved to results/qqp/qqp/
+  - results/qqp/qqp/results_nodp_hard.csv
+  - results/qqp/qqp/results_dp_hard.csv
+
+✓ Evaluations complete for budget 5000, seed 44
+
+================================================
+Completed all budgets for SEED 44
+================================================
+
+
+==========================================
+TASK qqp COMPLETE!
+Results saved to: results/qqp
+==========================================

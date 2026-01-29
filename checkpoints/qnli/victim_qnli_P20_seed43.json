@@ -1,0 +1,51 @@
+{
+  "task": "qnli",
+  "model": "t5-small",
+  "prompt_len": 20,
+  "lr": 0.01,
+  "batch_size": 256,
+  "epochs": 3,
+  "max_length": 128,
+  "seed": 43,
+  "label_names": [
+    "entailment",
+    "not_entailment"
+  ],
+  "label_texts": [
+    "entailment",
+    "not entailment"
+  ],
+  "save_path": "checkpoints/qnli/victim_qnli_P20_seed43.pt",
+  "epochs_log": [
+    {
+      "epoch": 1,
+      "train_loss": 0.30473690711322243,
+      "acc": 0.8969430715723962,
+      "avg_conf": 0.8947911584593319,
+      "prompt_norm": 11.586408615112305,
+      "pos_rate": 0.5352370492403441
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.25271410149661305,
+      "acc": 0.8967600219659527,
+      "avg_conf": 0.8991544267185525,
+      "prompt_norm": 14.71253490447998,
+      "pos_rate": 0.49514918542925135
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.2466341676966279,
+      "acc": 0.8969430715723962,
+      "avg_conf": 0.8941088981425918,
+      "prompt_norm": 17.393007278442383,
+      "pos_rate": 0.5334065531759107
+    }
+  ],
+  "epoch0": {
+    "acc": 0.4946000366099213,
+    "avg_conf": 0.9804490232738234,
+    "prompt_norm": 0.9984380602836609,
+    "pos_rate": 0.0
+  }
+}

@@ -1293,3 +1293,66 @@ Evaluating victim (DP)...
 Evaluating stolen (DP)...
 Evaluating pair (no DP)...
 Evaluating pair (DP)...
+
+================================================================================
+RESULTS: MNLI
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.7809 | f1=nan | conf=0.796 | pos_rate=nan
+Stolen:  acc=0.7792 | f1=nan | conf=0.765 | pos_rate=nan
+  → Agreement=0.9456 | KL(v||s)=0.025551 | cos_sim=0.041
+
+--- WITH DP ---
+Victim:  acc=0.7828 | f1=nan | conf=0.947 | pos_rate=nan
+Stolen:  acc=0.7768 | f1=nan | conf=0.922 | pos_rate=nan
+  → Agreement=0.9272 | KL(v||s)=0.093638 | cos_sim=0.007
+================================================================================
+
+✓ Results saved to results/mnli/mnli/
+  - results/mnli/mnli/results_nodp_probs.csv
+  - results/mnli/mnli/results_dp_probs.csv
+
+[mnli] Evaluating hard oracle results...
+
+================================================================================
+EVALUATING: MNLI | seed=44 | budget=5000 | oracle=hard
+================================================================================
+
+Evaluating victim (no DP)...
+Evaluating stolen (no DP)...
+Evaluating victim (DP)...
+Evaluating stolen (DP)...
+Evaluating pair (no DP)...
+Evaluating pair (DP)...
+
+================================================================================
+RESULTS: MNLI
+================================================================================
+
+--- NO DP ---
+Victim:  acc=0.7809 | f1=nan | conf=0.796 | pos_rate=nan
+Stolen:  acc=0.7758 | f1=nan | conf=0.924 | pos_rate=nan
+  → Agreement=0.8947 | KL(v||s)=0.342235 | cos_sim=0.019
+
+--- WITH DP ---
+Victim:  acc=0.7828 | f1=nan | conf=0.947 | pos_rate=nan
+Stolen:  acc=0.7684 | f1=nan | conf=0.938 | pos_rate=nan
+  → Agreement=0.9094 | KL(v||s)=0.174046 | cos_sim=0.030
+================================================================================
+
+✓ Results saved to results/mnli/mnli/
+  - results/mnli/mnli/results_nodp_hard.csv
+  - results/mnli/mnli/results_dp_hard.csv
+
+✓ Evaluations complete for budget 5000, seed 44
+
+================================================
+Completed all budgets for SEED 44
+================================================
+
+
+==========================================
+TASK mnli COMPLETE!
+Results saved to: results/mnli
+==========================================

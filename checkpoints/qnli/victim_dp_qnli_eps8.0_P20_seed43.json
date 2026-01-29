@@ -1,0 +1,55 @@
+{
+  "task": "qnli",
+  "model": "t5-small",
+  "prompt_len": 20,
+  "lr": 0.01,
+  "batch_size": 256,
+  "epochs": 3,
+  "max_length": 128,
+  "seed": 43,
+  "dp": {
+    "epsilon": 8.0,
+    "clip_C": 0.1,
+    "sigma": 0.47271728515625,
+    "sample_rate": 0.002444077408514173,
+    "steps": 1227
+  },
+  "label_names": [
+    "entailment",
+    "not_entailment"
+  ],
+  "label_texts": [
+    "entailment",
+    "not entailment"
+  ],
+  "save_path": "checkpoints/qnli/victim_dp_qnli_eps8.0_P20_seed43.pt",
+  "epochs_log": [
+    {
+      "epoch": 1,
+      "acc": 0.8597840014643968,
+      "avg_conf": 0.9696137038818672,
+      "prompt_norm": 19.515932083129883,
+      "pos_rate": 0.4984440783452316
+    },
+    {
+      "epoch": 2,
+      "acc": 0.8683873329672341,
+      "avg_conf": 0.972926437822035,
+      "prompt_norm": 26.83734703063965,
+      "pos_rate": 0.5172981878088962
+    },
+    {
+      "epoch": 3,
+      "acc": 0.8685703825736775,
+      "avg_conf": 0.9768195015245494,
+      "prompt_norm": 32.19631576538086,
+      "pos_rate": 0.5394471901885411
+    }
+  ],
+  "epoch0": {
+    "acc": 0.4946000366099213,
+    "avg_conf": 0.9804490232738234,
+    "prompt_norm": 0.9984380602836609,
+    "pos_rate": 0.0
+  }
+}
